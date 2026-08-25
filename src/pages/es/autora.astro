@@ -35,10 +35,11 @@ import Layout from '../../layouts/Layout.astro';
       .masthead { padding: 1rem 1.25rem 0.75rem; }
       .masthead-name { font-size: 30px; }
       .masthead-sub { font-size: 10px; }
-      .nav-top { flex-wrap: wrap; height: auto; padding: 0.6rem 1.25rem; row-gap: 6px; }
+      .nav-top { height: auto; padding: 0.6rem 1.25rem; overflow-x: auto; justify-content: flex-start; -webkit-overflow-scrolling: touch; }
       .nav-top a { font-size: 10px; }
-      .nav-top > div { flex-wrap: wrap; gap: 8px 14px; }
-      .nav-sections { overflow-x: auto; justify-content: flex-start; -webkit-overflow-scrolling: touch; }
+      .nav-top > div { flex-wrap: nowrap; gap: 14px; flex-shrink: 0; white-space: nowrap; }
+      .nav-lang { flex-shrink: 0; white-space: nowrap; margin-left: 14px; }
+      .nav-sections { overflow-x: auto; justify-content: flex-start; -webkit-overflow-scrolling: touch; mask-image: linear-gradient(to right, black 88%, transparent 100%); -webkit-mask-image: linear-gradient(to right, black 88%, transparent 100%); }
       .nav-section { white-space: nowrap; flex-shrink: 0; font-size: 11px; padding: 8px 14px; }
       .footer { flex-direction: column; align-items: flex-start; gap: 10px; padding: 1.25rem; }
       .footer-links { display: flex; flex-wrap: wrap; gap: 6px 14px; }
