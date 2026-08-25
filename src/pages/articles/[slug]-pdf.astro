@@ -36,6 +36,11 @@ const hasPaperInfo = paperParts.length > 0 || !!paperHref;
     }
     body { background: #fff; font-family: var(--sans); color: var(--text-main); max-width: 740px; margin: 0 auto; padding: 0; }
 
+    .pdf-print-bar { padding: 0.75rem 2rem; text-align: center; background: var(--off-white); }
+    .pdf-print-btn { padding: 10px 24px; background: var(--slate); color: #fff; border: none; font-family: var(--sans); font-size: 13px; letter-spacing: 0.04em; cursor: pointer; }
+    .pdf-print-btn:hover { background: var(--teal); }
+    @media print { .pdf-print-bar { display: none; } }
+
     .pdf-header { border-bottom: 3px solid var(--slate); padding: 1.25rem 2rem 1rem; display: flex; align-items: flex-end; justify-content: space-between; }
     .pdf-logo { font-family: var(--serif); font-size: 28px; color: var(--slate); letter-spacing: -0.5px; line-height: 1; }
     .pdf-logo span { color: #14919B !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -90,6 +95,10 @@ const hasPaperInfo = paperParts.length > 0 || !!paperHref;
 </head>
 <body>
 
+  <div class="pdf-print-bar">
+    <button class="pdf-print-btn" id="btn-print">Print / Save as PDF</button>
+  </div>
+
   <div class="pdf-header">
     <div class="pdf-logo">The Small <span>Print</span></div>
     <div>
@@ -141,10 +150,8 @@ const hasPaperInfo = paperParts.length > 0 || !!paperHref;
   </div>
 
 <script>
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      window.print();
-    }, 500);
+  document.getElementById('btn-print').addEventListener('click', function() {
+    window.print();
   });
 </script>
 </body>
