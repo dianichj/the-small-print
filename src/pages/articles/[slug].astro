@@ -192,11 +192,10 @@ const esLink = d.translationSlug ? `/es/articulos/${d.translationSlug}` : '/es';
   </div>
 </div>
 
-<script define:vars={{ shareTitle: d.title, shareText: d.deck }}>
+<script define:vars={{ shareTitle: d.title, shareText: d.deck, pdfSlug: article.id }}>
   document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('btn-pdf').addEventListener('click', function() {
-      const slug = window.location.pathname.split('/').pop();
-      window.location.href = '/articles/' + slug + '-pdf';
+      window.location.href = '/articles/' + pdfSlug + '-pdf';
     });
 
     function showToast(message) {
