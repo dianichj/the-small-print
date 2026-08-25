@@ -4,8 +4,8 @@
 
 <p align="center"><em>A scientific publication for general readers, designed with the editorial experience of a scientific journal.</em></p>
 
-[thesmallprint.pub](https://thesmallprint.pub) — a bilingual (English/Spanish) publication
-that takes real scientific studies in medicine, biomedicine, and AI, and translates them
+[thesmallprint.pub](https://thesmallprint.pub) is a bilingual (English/Spanish) publication
+that takes real scientific studies in medicine, biomedicine, and computer biology, and translates them
 honestly for curious readers. Each article ends with **The Small Print §**: the nuances,
 the honest interpretation, and what the headlines will probably get wrong.
 
