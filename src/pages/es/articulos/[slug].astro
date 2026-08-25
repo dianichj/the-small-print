@@ -20,9 +20,21 @@ const paperCitation = paperParts.join('. ') + (paperParts.length ? '.' : '');
 const paperHref = d.paperDOI ? `https://doi.org/${d.paperDOI}` : (d.paperURL || null);
 const hasPaperInfo = paperParts.length > 0 || !!paperHref;
 const enLink = d.translationSlug ? `/articles/${d.translationSlug}` : '/';
+const alternateUrls = { es: `/es/articulos/${article.id}/`, en: d.translationSlug ? `/articles/${d.translationSlug}/` : undefined };
 ---
 
-<Layout title={d.title} lang="es" description={d.deck} image={d.image}>
+<Layout title={d.title} lang="es" description={d.deck} image={d.image} type="article" alternateUrls={alternateUrls}>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": d.title,
+    "description": d.deck,
+    "image": d.image ? `https://thesmallprint.pub${d.image}` : undefined,
+    "author": { "@type": "Person", "name": "Diana Chiang Jurado" },
+    "publisher": { "@type": "Organization", "name": "The Small Print" },
+    "mainEntityOfPage": `https://thesmallprint.pub/es/articulos/${article.id}`,
+    "inLanguage": "es",
+  })} />
   <style>
     .nav-top { border-bottom: 1px solid #c8c3ba; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 44px; background: #f8f6f1; }
     .nav-top a { font-size: 11px; color: #8a94a0; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }

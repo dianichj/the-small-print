@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 
-const { title, lang = 'en', description, image } = Astro.props;
+const { title, lang = 'en', description, image, type = 'website', alternateUrls } = Astro.props;
 
 const SITE_URL = 'https://thesmallprint.pub';
 const SITE_NAME = 'The Small Print';
@@ -11,6 +11,7 @@ const pageDescription = description
 const absoluteImage = image
   ? (image.startsWith('http') ? image : `${SITE_URL}${image}`)
   : null;
+const canonicalURL = new URL(Astro.url.pathname, SITE_URL).toString();
 ---
 
 <html lang={lang}>
@@ -18,16 +19,20 @@ const absoluteImage = image
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+    {alternateUrls?.en && <link rel="alternate" hreflang="en" href={new URL(alternateUrls.en, SITE_URL).toString()} />}
+    {alternateUrls?.es && <link rel="alternate" hreflang="es" href={new URL(alternateUrls.es, SITE_URL).toString()} />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet" />
     <title>{pageTitle}</title>
     <meta name="description" content={pageDescription} />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:site_name" content={SITE_NAME} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonicalURL} />
     {absoluteImage && <meta property="og:image" content={absoluteImage} />}
 
     <meta name="twitter:card" content="summary_large_image" />

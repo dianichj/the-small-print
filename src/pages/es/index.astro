@@ -9,7 +9,7 @@ const featured = sorted[0];
 const rest = sorted.filter(a => a.id !== featured?.id);
 ---
 
-<Layout title="Inicio" lang="es">
+<Layout title="Inicio" lang="es" alternateUrls={{ en: '/', es: '/es/' }}>
   <style>
     .nav-top { border-bottom: 1px solid #c8c3ba; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 44px; background: #f8f6f1; }
     .nav-top a { font-size: 11px; color: #8a94a0; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
