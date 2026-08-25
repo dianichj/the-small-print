@@ -34,6 +34,16 @@ import Layout from '../layouts/Layout.astro';
     .footer-logo span { color: #14919B; }
     .footer-links a { font-size: 11px; color: #8a94a0; text-decoration: none; margin-left: 16px; }
     .footer-note { font-size: 11px; color: #8a94a0; }
+
+    @media (max-width: 720px) {
+      .nav-top { flex-wrap: wrap; height: auto; padding: 0.75rem 1.25rem; row-gap: 8px; }
+      .nav-top > div { flex-wrap: wrap; gap: 10px 16px; }
+      .nav-sections { overflow-x: auto; justify-content: flex-start; -webkit-overflow-scrolling: touch; }
+      .nav-section { white-space: nowrap; flex-shrink: 0; }
+      .footer { flex-direction: column; align-items: flex-start; gap: 10px; padding: 1.25rem; }
+      .footer-links { display: flex; flex-wrap: wrap; gap: 6px 14px; }
+      .footer-links a { margin-left: 0; }
+    }
   </style>
 
   <div class="nav-top">
