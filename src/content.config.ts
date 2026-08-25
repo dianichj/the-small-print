@@ -12,6 +12,7 @@ const articleSchema = z.object({
   image: z.string().optional(),
   imageAlt: z.string().optional(),
   translationSlug: z.string().optional(),
+  articleDOI: z.string().optional(),
   theSmallPrint: z.string().optional(),
   paperTitle: z.string().optional(),
   paperAuthors: z.string().optional(),

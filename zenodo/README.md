@@ -149,6 +149,18 @@ confirm:
 - [ ] **Community**: "The Small Print" shows up.
 - [ ] **Language**: `eng` for English articles, `spa` for Spanish.
 
+## 6. Show the DOI on the site
+
+Once published, Zenodo gives you a DOI (e.g. `10.5281/zenodo.1234567`). Add it to the
+article's frontmatter as `articleDOI`, then commit and push:
+
+```yaml
+articleDOI: "10.5281/zenodo.1234567"
+```
+
+The article page automatically shows a "Cite this article" box with the official
+Zenodo DOI badge once this field is set — no other code changes needed.
+
 ## Environment variables
 
 | Variable | What it's for | Default |

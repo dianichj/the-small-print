@@ -52,6 +52,9 @@ const esLink = d.translationSlug ? `/es/articulos/${d.translationSlug}` : '/es';
     .paper-citation-text { font-size: 13px; color: #5a6472; line-height: 1.6; }
     .paper-citation-text a { color: #0d7377; text-decoration: none; margin-left: 4px; }
     .paper-citation-text a:hover { text-decoration: underline; }
+    .article-citation { border: 0.5px solid #c8c3ba; padding: 1rem 1.25rem; margin: 1.5rem 0; background: #fff; }
+    .article-citation-label { font-size: 10px; color: #8a94a0; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.6rem; }
+    .article-citation img { height: 20px; display: block; }
     .tsp-section { background: #1e2d3d; padding: 2.5rem 2rem; margin-top: 1rem; }
     .tsp-section-inner { max-width: 680px; margin: 0 auto; }
     .tsp-label { font-size: 10px; color: #14919B; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.5rem; }
@@ -181,6 +184,14 @@ const esLink = d.translationSlug ? `/es/articulos/${d.translationSlug}` : '/es';
           {paperCitation}
           {paperHref && <a href={paperHref} target="_blank" rel="noopener">{paperHref}</a>}
         </p>
+      </div>
+    )}
+    {d.articleDOI && (
+      <div class="article-citation">
+        <div class="article-citation-label">Cite this article</div>
+        <a href={`https://doi.org/${d.articleDOI}`} target="_blank" rel="noopener">
+          <img src={`https://zenodo.org/badge/DOI/${d.articleDOI}.svg`} alt={`DOI: ${d.articleDOI}`} />
+        </a>
       </div>
     )}
     <div class="license-note">
