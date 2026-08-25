@@ -7,7 +7,6 @@ topic: "Salud cardiovascular"
 readTime: "10 min"
 featured: true
 image: "/images/articles/issue01/issue-01-le-hace-bien-el-cafe-a-tu-corazon.jpg"
-imageAlt: "Texto alternativo placeholder describiendo la imagen destacada de este artículo."
 translationSlug: "issue-01-is-coffee-good-for-your-heart"
 paperTitle: "Coffee and cardiovascular disease"
 paperAuthors: "Dewland TA, van Dam RM, Marcus GM"
