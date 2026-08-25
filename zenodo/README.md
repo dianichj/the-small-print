@@ -72,11 +72,13 @@ Field mapping:
 The rest of the fields (`upload_type`, `creators`, `license`, `communities`, etc.)
 come fixed from `metadata-template.json`.
 
-### The version in the other language (`isTranslationOf`)
+### The version in the other language (`isVariantFormOf`)
 
 Once you've published the English (or Spanish) version of an article and have its
-DOI, pass it in when generating the other version to declare the `isTranslationOf`
-relation:
+DOI, pass it in when generating the other version to declare the relation to it.
+Zenodo's deposit API doesn't accept DataCite's `isTranslationOf` relation, so the
+script uses `isVariantFormOf` instead — DataCite's own documented fallback for
+translations when a more specific relation isn't available:
 
 ```bash
 node generate-metadata.js ../src/content/articles-es/issue-01-le-hace-bien-el-cafe-a-tu-corazon.md \
@@ -142,7 +144,7 @@ confirm:
 - [ ] **`related_identifiers`**: the original paper's DOI resolves correctly on
       doi.org, and the article's URL on the site is live in production (not
       localhost) and works.
-- [ ] If applicable, the `isTranslationOf` DOI is correct and resolves.
+- [ ] If applicable, the `isVariantFormOf` DOI to the other language's version is correct and resolves.
 - [ ] **`publication_date`** is the real date, not a date guessed by the script
       (check the ⚠ warning in the console).
 - [ ] **Attached PDF** is the final version of the article, not a draft.

@@ -112,7 +112,9 @@ function generateMetadata(articlePath, opts) {
   }
   relatedIdentifiers.push({ identifier: articleURL, relation: 'isVariantFormOf' });
   if (opts.translationDoi) {
-    relatedIdentifiers.push({ identifier: `https://doi.org/${opts.translationDoi}`, relation: 'isTranslationOf' });
+    // Zenodo's deposit API doesn't accept DataCite's "isTranslationOf" relation —
+    // "isVariantFormOf" is DataCite's own documented fallback for translations.
+    relatedIdentifiers.push({ identifier: `https://doi.org/${opts.translationDoi}`, relation: 'isVariantFormOf' });
   }
   metadata.related_identifiers = relatedIdentifiers;
 
