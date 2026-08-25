@@ -196,8 +196,15 @@ const esLink = d.translationSlug ? `/es/articulos/${d.translationSlug}` : '/es';
   document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('btn-pdf').addEventListener('click', function() {
       const slug = window.location.pathname.split('/').pop();
-      window.open('/articles/' + slug + '-pdf', '_blank');
+      window.location.href = '/articles/' + slug + '-pdf';
     });
+
+    function showToast(message) {
+      const toast = document.getElementById('share-toast');
+      toast.textContent = message;
+      toast.classList.add('visible');
+      setTimeout(() => toast.classList.remove('visible'), 2500);
+    }
 
     document.getElementById('btn-share').addEventListener('click', async function() {
       const url = window.location.href;
@@ -209,11 +216,18 @@ const esLink = d.translationSlug ? `/es/articulos/${d.translationSlug}` : '/es';
         }
         return;
       }
-      navigator.clipboard.writeText(url).then(() => {
-        const toast = document.getElementById('share-toast');
-        toast.classList.add('visible');
-        setTimeout(() => toast.classList.remove('visible'), 2500);
-      });
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        try {
+          await navigator.clipboard.writeText(url);
+          showToast('Link copied to clipboard');
+          return;
+        } catch (err) {
+          // fall through to the prompt fallback below
+        }
+      }
+      // Share/Clipboard APIs need a secure (https) context — this covers
+      // browsers or connections where neither is available.
+      window.prompt('Copy this link:', url);
     });
   });
 </script>

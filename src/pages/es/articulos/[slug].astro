@@ -196,8 +196,15 @@ const enLink = d.translationSlug ? `/articles/${d.translationSlug}` : '/';
   document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('btn-pdf').addEventListener('click', function() {
       const slug = window.location.pathname.split('/').pop();
-      window.open('/es/articulos/' + slug + '-pdf', '_blank');
+      window.location.href = '/es/articulos/' + slug + '-pdf';
     });
+
+    function showToast(message) {
+      const toast = document.getElementById('share-toast');
+      toast.textContent = message;
+      toast.classList.add('visible');
+      setTimeout(() => toast.classList.remove('visible'), 2500);
+    }
 
     document.getElementById('btn-share').addEventListener('click', async function() {
       const url = window.location.href;
@@ -209,11 +216,18 @@ const enLink = d.translationSlug ? `/articles/${d.translationSlug}` : '/';
         }
         return;
       }
-      navigator.clipboard.writeText(url).then(() => {
-        const toast = document.getElementById('share-toast');
-        toast.classList.add('visible');
-        setTimeout(() => toast.classList.remove('visible'), 2500);
-      });
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        try {
+          await navigator.clipboard.writeText(url);
+          showToast('Enlace copiado al portapapeles');
+          return;
+        } catch (err) {
+          // seguimos al respaldo con prompt
+        }
+      }
+      // Share/Clipboard requieren conexión segura (https) — esto cubre
+      // navegadores o conexiones donde ninguna de las dos está disponible.
+      window.prompt('Copiá este enlace:', url);
     });
   });
 </script>
