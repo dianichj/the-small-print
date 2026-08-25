@@ -1,0 +1,151 @@
+---
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+  return articles.map(article => ({
+    params: { slug: article.id },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const { Content } = await render(article);
+const d = article.data;
+
+const tspParagraphs = (d.theSmallPrint ?? '').split(/\n\s*\n/).filter(Boolean);
+const paperParts = [d.paperAuthors, d.paperYear ? `(${d.paperYear})` : null, d.paperTitle, d.paperJournal].filter(Boolean);
+const paperCitation = paperParts.join('. ') + (paperParts.length ? '.' : '');
+const paperHref = d.paperDOI ? `https://doi.org/${d.paperDOI}` : (d.paperURL || null);
+const hasPaperInfo = paperParts.length > 0 || !!paperHref;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>{d.title} · The Small Print</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --slate: #1e2d3d; --teal: #0d7377; --teal-mid: #14919B;
+      --off-white: #f8f6f1; --warm-gray: #e8e4db; --rule: #c8c3ba;
+      --text-main: #1e2d3d; --text-muted: #5a6472; --text-subtle: #8a94a0;
+      --serif: Georgia, 'Times New Roman', serif; --sans: Inter, system-ui, sans-serif;
+    }
+    body { background: #fff; font-family: var(--sans); color: var(--text-main); max-width: 740px; margin: 0 auto; padding: 0; }
+
+    .pdf-header { border-bottom: 3px solid var(--slate); padding: 1.25rem 2rem 1rem; display: flex; align-items: flex-end; justify-content: space-between; }
+    .pdf-logo { font-family: var(--serif); font-size: 28px; color: var(--slate); letter-spacing: -0.5px; line-height: 1; }
+    .pdf-logo span { color: #14919B !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .pdf-issue { font-size: 10px; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; text-align: right; }
+    .pdf-tagline { font-size: 10px; color: var(--teal); letter-spacing: 0.06em; margin-top: 2px; text-align: right; }
+
+    .pdf-title-block { padding: 1.5rem 2rem 1.25rem; border-bottom: 1px solid var(--rule); }
+    .pdf-kicker { font-size: 9px; color: var(--teal); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .pdf-title { font-family: var(--serif); font-size: 26px; color: var(--slate); line-height: 1.2; margin-bottom: 0.6rem; font-weight: normal; }
+    .pdf-deck { font-size: 13px; color: var(--text-muted); line-height: 1.65; border-left: 2px solid var(--teal); padding-left: 10px; margin-bottom: 0.75rem; font-style: italic; }
+    .pdf-byline { font-size: 10px; color: var(--text-muted); display: flex; gap: 12px; }
+
+    .pdf-body { padding: 1.25rem 2rem; }
+    .pdf-body :global(h2) { font-size: 14px; color: var(--teal); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; margin-top: 1.5rem; font-weight: normal; font-family: var(--sans); }
+    .pdf-body :global(h2:first-child) { margin-top: 0; }
+    .pdf-body :global(h3) { font-size: 12.5px; color: var(--text-main); margin-bottom: 0.4rem; margin-top: 1.1rem; font-weight: 600; font-family: var(--sans); }
+    .pdf-body :global(p) { font-size: 12px; color: var(--text-muted); line-height: 1.7; margin-bottom: 0.75rem; }
+    .pdf-body :global(strong) { color: var(--text-main); font-weight: 600; }
+
+    .pdf-paper-link { border: 0.5px solid var(--rule); padding: 0.6rem 0.75rem; margin-top: 1rem; }
+    .pdf-paper-title { font-size: 10px; color: var(--teal); font-weight: 500; margin-bottom: 0.3rem; }
+    .pdf-paper-sub { font-size: 9px; color: var(--text-muted); line-height: 1.5; }
+    .pdf-paper-sub a { color: var(--teal); text-decoration: none; margin-left: 3px; }
+
+    .pdf-tsp { background: var(--slate); padding: 1.25rem 1.5rem; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .pdf-tsp-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 1rem; }
+    .pdf-tsp-label { font-size: 9px; color: var(--teal-mid); letter-spacing: 0.12em; text-transform: uppercase; }
+    .pdf-tsp-title { font-family: var(--serif); font-size: 14px; color: #fff; font-weight: normal; }
+    .pdf-tsp-prose { font-size: 10px; color: #a0aab4; line-height: 1.6; }
+    .pdf-tsp-prose p { margin-bottom: 0.5rem; }
+    .pdf-tsp-prose p:last-child { margin-bottom: 0; }
+
+    .pdf-footer { border-top: 1px solid var(--rule); padding: 0.6rem 2rem; display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
+    .pdf-footer-logo { font-family: var(--serif); font-size: 11px; color: var(--slate); }
+    .pdf-footer-logo span { color: #14919B !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .pdf-footer-note { font-size: 9px; color: var(--text-muted); }
+
+    @media print {
+  @page { margin: 1cm; size: A4; }
+  body { max-width: 100%; }
+  .pdf-tsp {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    background: #1e2d3d !important;
+  }
+  .pdf-tsp * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <div class="pdf-header">
+    <div class="pdf-logo">The Small <span>Print</span></div>
+    <div>
+      <div class="pdf-issue">{d.issue} · {d.date}</div>
+      <div class="pdf-tagline">From the study to you</div>
+    </div>
+  </div>
+
+  <div class="pdf-title-block">
+    <div class="pdf-kicker">{d.topic} · {d.issue} · {d.readTime} read</div>
+    <h1 class="pdf-title">{d.title}</h1>
+    <p class="pdf-deck">{d.deck}</p>
+    <div class="pdf-byline">
+      <span>By Diana Chiang Jurado, Dr. rer. nat.</span>
+      <span>·</span>
+      <span>{d.date}</span>
+      <span>·</span>
+      <span>thesmallprint.pub</span>
+    </div>
+  </div>
+
+  <div class="pdf-body">
+    <Content />
+    {hasPaperInfo && (
+      <div class="pdf-paper-link">
+        <div class="pdf-paper-title">Original paper</div>
+        <div class="pdf-paper-sub">
+          {paperCitation}
+          {paperHref && <a href={paperHref} target="_blank" rel="noopener">{paperHref}</a>}
+        </div>
+      </div>
+    )}
+  </div>
+
+  <div class="pdf-tsp">
+    <div class="pdf-tsp-header">
+      <div class="pdf-tsp-label">The Small Print §</div>
+      <div class="pdf-tsp-title">What the headlines will probably get wrong</div>
+    </div>
+    <div class="pdf-tsp-prose">
+      {tspParagraphs.map(p => <p>{p}</p>)}
+    </div>
+  </div>
+
+  <div class="pdf-footer">
+    <div class="pdf-footer-logo">The Small <span>Print</span></div>
+    <div class="pdf-footer-note">thesmallprint.pub · Independent · Bilingual · No conflicts of interest</div>
+    <div class="pdf-footer-note">© Diana Chiang Jurado · CC BY 4.0</div>
+  </div>
+
+<script>
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      window.print();
+    }, 500);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "the-small-print-zenodo",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Generates Zenodo deposit metadata for The Small Print articles, and optionally creates draft depositions via the Zenodo API.",
+  "scripts": {
+    "generate": "node generate-metadata.js"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "metadata": {
+    "upload_type": "publication",
+    "publication_type": "article",
+    "title": "<TITLE>",
+    "creators": [
+      {
+        "name": "Chiang Jurado, Diana",
+        "orcid": "0000-0002-5857-1477",
+        "affiliation": "The Small Print"
+      }
+    ],
+    "description": "<DESCRIPTION>",
+    "access_right": "open",
+    "license": "cc-by-4.0",
+    "language": "<LANGUAGE>",
+    "keywords": ["<KEYWORD>"],
+    "related_identifiers": [
+      {
+        "identifier": "<PAPER_DOI_URL>",
+        "relation": "references"
+      },
+      {
+        "identifier": "<ARTICLE_URL>",
+        "relation": "isVariantFormOf"
+      }
+    ],
+    "publication_date": "<PUBLICATION_DATE_YYYY-MM-DD>",
+    "version": "1.0",
+    "communities": [
+      { "identifier": "the-small-print" }
+    ]
+  }
+}

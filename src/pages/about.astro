@@ -1,0 +1,103 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Meet the author">
+  <style>
+    .nav-top { border-bottom: 1px solid #c8c3ba; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 44px; background: #f8f6f1; }
+    .nav-top a { font-size: 11px; color: #8a94a0; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
+    .nav-top a:hover { color: #0d7377; }
+    .nav-lang { color: #0d7377 !important; border: 0.5px solid #0d7377; padding: 3px 10px; border-radius: 20px; }
+    .masthead { padding: 1.5rem 2rem 1rem; text-align: center; border-bottom: 3px solid #1e2d3d; }
+    .masthead-name { font-family: Georgia, serif; font-size: 42px; color: #1e2d3d; letter-spacing: -0.5px; line-height: 1; }
+    .masthead-name span { color: #14919B; }
+    .masthead-sub { font-size: 11px; color: #8a94a0; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 6px; }
+    .nav-sections { display: flex; justify-content: center; border-bottom: 1px solid #c8c3ba; }
+    .nav-section { font-size: 12px; padding: 10px 20px; color: #5a6472; text-decoration: none; letter-spacing: 0.04em; border-bottom: 2px solid transparent; }
+    .nav-section.active { color: #1e2d3d; border-bottom: 2px solid #1e2d3d; font-weight: 500; }
+    .nav-section:hover { color: #0d7377; }
+    .page-body { max-width: 680px; margin: 0 auto; padding: 3rem 2rem; }
+    .author-header { display: flex; gap: 2rem; align-items: flex-start; margin-bottom: 2.5rem; }
+    .author-initials { width: 80px; height: 80px; border-radius: 50%; background: #1e2d3d; display: flex; align-items: center; justify-content: center; font-family: Georgia, serif; font-size: 22px; color: #14919B; flex-shrink: 0; }
+    .author-title h1 { font-family: Georgia, serif; font-size: 28px; color: #1e2d3d; font-weight: normal; margin-bottom: 4px; }
+    .author-title p { font-size: 14px; color: #8a94a0; line-height: 1.5; }
+    .prose { font-size: 16px; color: #5a6472; line-height: 1.8; margin-bottom: 1.5rem; }
+    .prose strong { color: #1e2d3d; font-weight: 500; }
+    .prose em { font-style: italic; }
+    .divider { height: 1px; background: #e8e4db; margin: 2rem 0; }
+    .section-label { font-size: 11px; color: #8a94a0; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.25rem; }
+    .cred-item { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 1rem; }
+    .cred-dot { width: 5px; height: 5px; border-radius: 50%; background: #0d7377; margin-top: 8px; flex-shrink: 0; }
+    .cred-text { font-size: 14px; color: #5a6472; line-height: 1.6; }
+    .cred-text strong { color: #1e2d3d; font-weight: 500; }
+    .philosophy-box { border-left: 2px solid #0d7377; padding: 1rem 1.25rem; margin: 2rem 0; }
+    .philosophy-text { font-family: Georgia, serif; font-size: 17px; color: #1e2d3d; line-height: 1.6; font-style: italic; }
+    .footer { padding: 1.5rem 2rem; border-top: 1px solid #c8c3ba; display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; }
+    .footer-logo { font-family: Georgia, serif; font-size: 16px; color: #1e2d3d; }
+    .footer-logo span { color: #14919B; }
+    .footer-links a { font-size: 11px; color: #8a94a0; text-decoration: none; margin-left: 16px; }
+    .footer-note { font-size: 11px; color: #8a94a0; }
+  </style>
+
+  <div class="nav-top">
+    <div style="display:flex; gap:20px;">
+      <a href="/">Home</a>
+      <a href="/about-tsp">About this publication</a>
+      <a href="/about">Meet the author</a>
+    </div>
+    <a href="/es/autora" class="nav-lang">En español</a>
+  </div>
+
+  <div class="masthead">
+    <div class="masthead-name">The Small <span>Print</span></div>
+    <div class="masthead-sub">From the study to you</div>
+  </div>
+
+  <div class="nav-sections">
+    <a href="/" class="nav-section">All articles</a>
+    <a href="/about-tsp" class="nav-section">About The Small Print</a>
+    <a href="/about" class="nav-section active">Meet the author</a>
+    <a href="/#tsp-section" class="nav-section">The Small Print §</a>
+  </div>
+
+  <div class="page-body">
+
+    <div class="author-header">
+      <img src="/diana.jpg" alt="Diana Chiang Jurado" style="width:80px; height:80px; border-radius:50%; object-fit:cover; object-position:center top; border:2px solid #0d7377; flex-shrink:0;" />
+      <div class="author-title">
+        <h1>Diana Chiang Jurado</h1>
+        <p>
+          Dr.rer.nat · Scientific Storyteller  <br />
+          Founder & Editor · The Small Print
+        </p>
+      </div>
+    </div>
+
+<p class="prose">Dear Reader,</p>
+
+<p class="prose">Thank you for landing at <em>The Small Print</em>. I am very glad to meet you.</p>
+
+<p class="prose">My name is Diana and I am the author of this content. Since a very young age, I have been an avid and curious student of life, human health, psychology, and science overall. I am also a natural communicator who loves to share and connect with others, fostering a safe space for intellectual exchange.</p>
+
+<p class="prose">Because of this curiosity, my background developed into a strong interdisciplinary one, absorbing knowledge in Human Medicine, Life Sciences, Psychology, Bioinformatics, and Data Science. I went from Medical School in my home country, Ecuador, to moving to Canada at age 24, where I studied biology and psychology and did clinical research. Eventually, I ended up in Germany once I turned 30 to pursue my Dr. rer. nat. (in global terms, a PhD), where I learned a lot about the heart and its connection with the immune system. After crossing that finish line, I moved into Data Science, surrounding myself with bioinformaticians, developers, and engineers.</p>
+
+<p class="prose">The art of communication has always been a present part of my student life. Since my high school years, I enjoyed very much being part of the journalism club, and once I moved to Canada, being part of a local community radio station, CJSR 88.5 FM. There, I was able to share content with a lovely audience of listeners and other radio producers and programmers. It was one of the highlights of my activities during my years as a master's student.</p>
+
+<p class="prose">I believe I chose this unconventional learning path knowing deeply that it would all serve one purpose: to curate, understand, and communicate science with transparency for an audience like you. I hope that you find in <em>The Small Print</em> a place to understand science without needing to become an academic or losing the important details of what scientists are working on nowadays. As we walk through life, explore the world, and relate to others, we all become scientists in our daily lives attempting to understand life around us.</p>
+
+<p class="prose">Thanks for reading me, and I hope you become a regular visitor.</p>
+
+<p class="prose" style="font-family: 'Dancing Script', cursive; font-size: 24px; color: #1e2d3d;">Diana</p>
+
+<p class="prose" style="font-size:14px;">If you would like to stay in touch, my email is always open to you: <a href="mailto:dianachj@thesmallprint.pub" style="color:#0d7377;">dianachj@thesmallprint.pub</a></p>
+
+<div class="footer">
+  <div class="footer-logo">The Small <span>Print</span></div>
+  <div class="footer-links">
+    <a href="/about-tsp">About</a>
+    <a href="/about">Author</a>
+    <a href="mailto:dianachj@thesmallprint.pub">Contact</a>
+    <a href="/es/autora">En español</a>
+  </div>
+  <div class="footer-note">Independent · Bilingual · Germany</div>
+</div>

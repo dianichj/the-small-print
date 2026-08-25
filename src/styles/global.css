@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --slate: #1e2d3d;
+  --teal: #0d7377;
+  --teal-mid: #14919B;
+  --off-white: #f8f6f1;
+  --warm-gray: #e8e4db;
+}
+
+body {
+  background-color: var(--off-white);
+  color: var(--slate);
+  font-family: Inter, system-ui, sans-serif;
+}
+

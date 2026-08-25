@@ -1,0 +1,97 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Conoce a la autora" lang="es">
+  <style>
+    .nav-top { border-bottom: 1px solid #c8c3ba; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 44px; background: #f8f6f1; }
+    .nav-top a { font-size: 11px; color: #8a94a0; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
+    .nav-top a:hover { color: #0d7377; }
+    .nav-lang { color: #0d7377 !important; border: 0.5px solid #0d7377; padding: 3px 10px; border-radius: 20px; }
+    .masthead { padding: 1.5rem 2rem 1rem; text-align: center; border-bottom: 3px solid #1e2d3d; }
+    .masthead-name { font-family: Georgia, serif; font-size: 42px; color: #1e2d3d; letter-spacing: -0.5px; line-height: 1; }
+    .masthead-name span { color: #14919B; }
+    .masthead-sub { font-size: 11px; color: #8a94a0; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 6px; }
+    .nav-sections { display: flex; justify-content: center; border-bottom: 1px solid #c8c3ba; }
+    .nav-section { font-size: 12px; padding: 10px 20px; color: #5a6472; text-decoration: none; letter-spacing: 0.04em; border-bottom: 2px solid transparent; }
+    .nav-section.active { color: #1e2d3d; border-bottom: 2px solid #1e2d3d; font-weight: 500; }
+    .nav-section:hover { color: #0d7377; }
+    .page-body { max-width: 680px; margin: 0 auto; padding: 3rem 2rem; }
+    .author-header { display: flex; gap: 2rem; align-items: flex-start; margin-bottom: 2.5rem; }
+    .author-title h1 { font-family: Georgia, serif; font-size: 28px; color: #1e2d3d; font-weight: normal; margin-bottom: 4px; }
+    .author-title p { font-size: 14px; color: #8a94a0; line-height: 1.5; }
+    .prose { font-size: 16px; color: #5a6472; line-height: 1.8; margin-bottom: 1.5rem; }
+    .prose strong { color: #1e2d3d; font-weight: 500; }
+    .prose em { font-style: italic; }
+    .divider { height: 1px; background: #e8e4db; margin: 2rem 0; }
+    .section-label { font-size: 11px; color: #8a94a0; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.25rem; }
+    .footer { padding: 1.5rem 2rem; border-top: 1px solid #c8c3ba; display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; }
+    .footer-logo { font-family: Georgia, serif; font-size: 16px; color: #1e2d3d; }
+    .footer-logo span { color: #14919B; }
+    .footer-links a { font-size: 11px; color: #8a94a0; text-decoration: none; margin-left: 16px; }
+    .footer-note { font-size: 11px; color: #8a94a0; }
+  </style>
+
+  <div class="nav-top">
+    <div style="display:flex; gap:20px;">
+      <a href="/es">Inicio</a>
+      <a href="/es/acerca-de">Acerca de esta publicación</a>
+      <a href="/es/autora">Conoce a la autora</a>
+    </div>
+    <a href="/about" class="nav-lang">In English</a>
+  </div>
+
+  <div class="masthead">
+    <div class="masthead-name">The Small <span>Print</span></div>
+    <div class="masthead-sub">Del estudio a ti</div>
+  </div>
+
+  <div class="nav-sections">
+    <a href="/es" class="nav-section">Todos los artículos</a>
+    <a href="/es/acerca-de" class="nav-section">Acerca de The Small Print</a>
+    <a href="/es/autora" class="nav-section active">Conoce a la autora</a>
+    <a href="/es#tsp-section" class="nav-section">The Small Print §</a>
+  </div>
+
+  <div class="page-body">
+
+    <div class="author-header">
+      <img src="/diana.jpg" alt="Diana Chiang Jurado" style="width:80px; height:80px; border-radius:50%; object-fit:cover; object-position:center top; border:2px solid #0d7377; flex-shrink:0;" />
+      <div class="author-title">
+        <h1>Diana Chiang Jurado</h1>
+        <p>
+          Dra. rer. nat · Narradora científica <br />
+          Fundadora y editora · The Small Print
+        </p>
+      </div>
+    </div>
+
+<p class="prose">Querida lectora, querido lector,</p>
+
+<p class="prose">Gracias por llegar hasta <em>The Small Print</em>. Me da mucho gusto conocerte.</p>
+
+<p class="prose">Me llamo Diana y soy la autora de este contenido. Desde muy joven he sido una estudiante ávida y curiosa de la vida, la salud humana, la psicología y la ciencia en general. También soy una comunicadora nata a la que le encanta compartir y conectar con otras personas, generando un espacio seguro para el intercambio intelectual.</p>
+
+<p class="prose">Por esa misma curiosidad, mi formación se volvió fuertemente interdisciplinaria, absorbiendo conocimientos en Medicina Humana, Ciencias de la Vida, Psicología, Bioinformática y Ciencia de Datos. Empecé la carrera de Medicina en mi país, Ecuador, y a los 24 años me mudé a Canadá, donde estudié biología y psicología e hice investigación clínica. Finalmente, ya a los 30 años, llegué a Alemania para hacer mi Dr. rer. nat. (en términos generales, un doctorado), donde aprendí muchísimo sobre el corazón y su conexión con el sistema inmune. Después de cruzar esa meta, me pasé a la Ciencia de Datos, rodeándome de bioinformáticos, desarrolladores e ingenieros.</p>
+
+<p class="prose">El arte de la comunicación siempre estuvo presente en mi vida como estudiante. Desde el colegio disfruté mucho ser parte del club de periodismo, y ya en Canadá, de una radio comunitaria local, CJSR 88.5 FM. Ahí pude compartir contenido con una audiencia hermosa de oyentes y con otros productores y programadores de radio. Fue uno de los puntos más agradables de mis años como estudiante de maestría.</p>
+
+<p class="prose">Creo que elegí este camino de aprendizaje poco convencional sabiendo, en el fondo, que todo serviría para un mismo propósito: curar, entender y comunicar ciencia con transparencia para una audiencia como tú. Espero que encuentres en <em>The Small Print</em> un lugar para entender ciencia sin necesidad de volverte académico ni perder los detalles importantes de lo que los científicos están trabajando hoy en día. A medida que caminamos por la vida, exploramos el mundo y nos relacionamos con otras personas, todos nos volvemos científicos en nuestro día a día, tratando de entender la vida que nos rodea.</p>
+
+<p class="prose">Gracias por leerme, y espero que te vuelvas una visita habitual.</p>
+
+<p class="prose" style="font-family: 'Dancing Script', cursive; font-size: 24px; color: #1e2d3d;">Diana</p>
+
+<p class="prose" style="font-size:14px;">Si quieres mantenerte en contacto, mi correo siempre está abierto para ti: <a href="mailto:dianachj@thesmallprint.pub" style="color:#0d7377;">dianachj@thesmallprint.pub</a></p>
+
+<div class="footer">
+  <div class="footer-logo">The Small <span>Print</span></div>
+  <div class="footer-links">
+    <a href="/es/acerca-de">Acerca de</a>
+    <a href="/es/autora">Autora</a>
+    <a href="mailto:dianachj@thesmallprint.pub">Contacto</a>
+    <a href="/about">In English</a>
+  </div>
+  <div class="footer-note">Independiente · Bilingüe · Alemania</div>
+</div>
+</Layout>

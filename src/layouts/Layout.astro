@@ -1,0 +1,41 @@
+---
+import '../styles/global.css';
+
+const { title, lang = 'en', description, image } = Astro.props;
+
+const SITE_URL = 'https://thesmallprint.pub';
+const SITE_NAME = 'The Small Print';
+const pageTitle = `${title} · ${SITE_NAME}`;
+const pageDescription = description
+  || 'A bilingual publication that translates real scientific studies for curious readers.';
+const absoluteImage = image
+  ? (image.startsWith('http') ? image : `${SITE_URL}${image}`)
+  : null;
+---
+
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    {absoluteImage && <meta property="og:image" content={absoluteImage} />}
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    {absoluteImage && <meta name="twitter:image" content={absoluteImage} />}
+  </head>
+  <body class="bg-offwhite text-slate font-sans">
+    <slot />
+  </body>
+</html>

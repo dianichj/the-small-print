@@ -1,0 +1,178 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Article">
+  <style>
+    .nav-top { border-bottom: 1px solid #c8c3ba; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 44px; background: #f8f6f1; }
+    .nav-top a { font-size: 11px; color: #8a94a0; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
+    .nav-top a:hover { color: #0d7377; }
+    .nav-lang { color: #0d7377 !important; border: 0.5px solid #0d7377; padding: 3px 10px; border-radius: 20px; }
+    .masthead { padding: 1.5rem 2rem 1rem; text-align: center; border-bottom: 3px solid #1e2d3d; }
+    .masthead-name { font-family: Georgia, serif; font-size: 42px; color: #1e2d3d; letter-spacing: -0.5px; line-height: 1; }
+    .masthead-name span { color: #14919B; }
+    .masthead-sub { font-size: 11px; color: #8a94a0; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 6px; }
+
+    .article-header { border-bottom: 1px solid #c8c3ba; padding: 2.5rem 2rem 2rem; max-width: 780px; margin: 0 auto; }
+    .article-kicker { font-size: 10px; color: #0d7377; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.75rem; display: flex; gap: 12px; align-items: center; }
+    .article-kicker-sep { color: #c8c3ba; }
+    .article-h1 { font-family: Georgia, serif; font-size: 36px; color: #1e2d3d; line-height: 1.2; margin-bottom: 1rem; font-weight: normal; }
+    .article-deck { font-size: 17px; color: #5a6472; line-height: 1.65; margin-bottom: 1.25rem; max-width: 600px; }
+    .article-byline { font-size: 12px; color: #8a94a0; display: flex; gap: 16px; }
+
+    .article-body { max-width: 680px; margin: 0 auto; padding: 2.5rem 2rem; }
+
+    .section-block { margin-bottom: 2.5rem; }
+    .section-number { font-size: 10px; color: #0d7377; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .section-heading { font-family: Georgia, serif; font-size: 20px; color: #1e2d3d; margin-bottom: 0.75rem; font-weight: normal; }
+    .body-text { font-size: 16px; color: #5a6472; line-height: 1.8; }
+    .body-text strong { color: #1e2d3d; font-weight: 500; }
+
+    .divider { height: 1px; background: #e8e4db; margin: 2rem 0; }
+
+    .paper-link { display: flex; align-items: center; gap: 12px; border: 0.5px solid #c8c3ba; padding: 1rem 1.25rem; margin: 2rem 0; background: #fff; }
+    .paper-link-icon { font-size: 20px; color: #0d7377; }
+    .paper-link-title { font-size: 14px; color: #0d7377; font-weight: 500; }
+    .paper-link-sub { font-size: 12px; color: #8a94a0; margin-top: 2px; }
+    .paper-link-arrow { margin-left: auto; font-size: 16px; color: #c8c3ba; }
+
+    .tsp-section { background: #1e2d3d; padding: 2.5rem 2rem; margin-top: 3rem; }
+    .tsp-section-inner { max-width: 680px; margin: 0 auto; }
+    .tsp-label { font-size: 10px; color: #14919B; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .tsp-title { font-family: Georgia, serif; font-size: 22px; color: #fff; margin-bottom: 1.5rem; font-weight: normal; }
+    .tsp-block { border-left: 2px solid #14919B; padding: 0.75rem 1.25rem; margin-bottom: 1.5rem; }
+    .tsp-block-label { font-size: 10px; color: #14919B; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .tsp-block-text { font-size: 15px; color: #a0aab4; line-height: 1.7; }
+    .tsp-block-text strong { color: #fff; font-weight: 500; }
+    .tsp-bottom-line { background: rgba(255,255,255,0.05); border: 0.5px solid rgba(255,255,255,0.1); padding: 1rem 1.25rem; margin-top: 2rem; }
+    .tsp-bottom-label { font-size: 10px; color: #14919B; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .tsp-bottom-text { font-size: 15px; color: #a0aab4; line-height: 1.7; }
+    .tsp-bottom-text strong { color: #fff; font-weight: 500; }
+
+    .footer { padding: 1.5rem 2rem; border-top: 1px solid #c8c3ba; display: flex; justify-content: space-between; align-items: center; background: #f8f6f1; }
+    .footer-logo { font-family: Georgia, serif; font-size: 16px; color: #1e2d3d; }
+    .footer-logo span { color: #14919B; }
+    .footer-links a { font-size: 11px; color: #8a94a0; text-decoration: none; margin-left: 16px; }
+    .footer-note { font-size: 11px; color: #8a94a0; }
+  </style>
+
+  <div class="nav-top">
+    <div style="display:flex; gap:20px;">
+      <a href="/">← All articles</a>
+      <a href="/about-tsp">About this publication</a>
+      <a href="/about">Meet the author</a>
+    </div>
+    <a href="/es" class="nav-lang">En español</a>
+  </div>
+
+  <div class="masthead">
+    <div class="masthead-name">The Small <span>Print</span></div>
+    <div class="masthead-sub">From the study to you · Issue 01 · June 2026</div>
+  </div>
+
+  <div class="article-header">
+    <div class="article-kicker">
+      <span>Cardioimmunology</span>
+      <span class="article-kicker-sep">·</span>
+      <span>Issue 01</span>
+      <span class="article-kicker-sep">·</span>
+      <span>8 min read</span>
+    </div>
+    <h1 class="article-h1">How your immune system quietly reshapes the failing heart</h1>
+    <p class="article-deck">A new single-cell study maps immune cell populations in human cardiac tissue after myocardial infarction — and finds patterns that challenge how we think about inflammation in heart failure.</p>
+    <div class="article-byline">
+      <span>By Diana Chiang Jurado</span>
+      <span>·</span>
+      <span>June 2026</span>
+    </div>
+  </div>
+
+  <div class="article-body">
+
+    <div class="section-block">
+      <div class="section-number">01 · What the study found</div>
+      <h2 class="section-heading">Placeholder — what did the researchers actually do and see?</h2>
+      <p class="body-text">This is where you describe the study in plain language. What was the question, who were the participants or samples, what method did they use, and what did they find. No jargon. Write like you're explaining it to a curious friend who just asked you about it at dinner.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-block">
+      <div class="section-number">02 · Why it matters</div>
+      <h2 class="section-heading">Placeholder — why was this question worth asking?</h2>
+      <p class="body-text">Context. What do we already know, and why does this study add something new? Why should someone who has never thought about this topic care about the answer?</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-block">
+      <div class="section-number">03 · What it doesn't prove</div>
+      <h2 class="section-heading">Placeholder — the part most coverage skips</h2>
+      <p class="body-text">This is where you push back. What conclusions would be a stretch? What would need to be true for the headline version to be accurate — and is it? Be honest even if it deflates the excitement a little. Especially then.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-block">
+      <div class="section-number">04 · Important limitations</div>
+      <h2 class="section-heading">Placeholder — the fine print of the fine print</h2>
+      <p class="body-text">Sample size, study design, follow-up time, population diversity, funding sources, conflicts of interest. These aren't footnotes — they're part of the story.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-block">
+      <div class="section-number">05 · Real-world context</div>
+      <h2 class="section-heading">Placeholder — what does this mean outside the lab?</h2>
+      <p class="body-text">Does this change anything for patients, clinicians, or policy? Is this early-stage research or something closer to practice? What would need to happen next for this to matter in the real world?</p>
+    </div>
+
+    <div class="paper-link">
+      <i class="ti ti-file-text paper-link-icon" aria-hidden="true"></i>
+      <div>
+        <div class="paper-link-title">Read the original paper</div>
+        <div class="paper-link-sub">Journal name · Open access · DOI: placeholder</div>
+      </div>
+      <i class="ti ti-external-link paper-link-arrow" aria-hidden="true"></i>
+    </div>
+
+  </div>
+
+  <div class="tsp-section">
+    <div class="tsp-section-inner">
+      <div class="tsp-label">The Small Print §</div>
+      <h2 class="tsp-title">What the headlines will probably get wrong</h2>
+
+      <div class="tsp-block">
+        <div class="tsp-block-label">On sample size and generalizability</div>
+        <div class="tsp-block-text">Placeholder — your honest take on who this study actually applies to, and who it might not. This is where your scientific judgment lives.</div>
+      </div>
+
+      <div class="tsp-block">
+        <div class="tsp-block-label">The causation trap</div>
+        <div class="tsp-block-text">Placeholder — if the study is correlational, say so clearly. If reporters are likely to overstate the causal claim, flag it here. <strong>Association is not causation</strong> — and most readers deserve to know the difference.</div>
+      </div>
+
+      <div class="tsp-block">
+        <div class="tsp-block-label">What's actually exciting here</div>
+        <div class="tsp-block-text">Placeholder — after all the caveats, what genuinely moves the needle? What question does this open that wasn't open before? End with what's real and interesting, not just what's wrong.</div>
+      </div>
+
+      <div class="tsp-bottom-line">
+        <div class="tsp-bottom-label">Bottom line</div>
+        <div class="tsp-bottom-text">Placeholder — one or two sentences. Your honest verdict. <strong>What should the reader walk away thinking?</strong> Not what the press release says. What you actually think.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-logo">The Small <span>Print</span></div>
+    <div class="footer-links">
+      <a href="/about-tsp">About</a>
+      <a href="/about">Author</a>
+      <a href="/es">En español</a>
+    </div>
+    <div class="footer-note">Independent · Bilingual · Freiburg</div>
+  </div>
+</Layout>

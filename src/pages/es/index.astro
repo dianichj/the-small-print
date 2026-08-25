@@ -1,15 +1,15 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
-const articles = await getCollection('articles');
+const articles = await getCollection('articlesEs');
 const issueNumber = (a) => parseInt(a.data.issue.match(/\d+/)?.[0] ?? '0', 10);
 const sorted = [...articles].sort((a, b) => issueNumber(b) - issueNumber(a));
 const featured = sorted[0];
 const rest = sorted.filter(a => a.id !== featured?.id);
 ---
 
-<Layout title="Home">
+<Layout title="Inicio" lang="es">
   <style>
     .nav-top { border-bottom: 1px solid #c8c3ba; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 44px; background: #f8f6f1; }
     .nav-top a { font-size: 11px; color: #8a94a0; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
@@ -51,6 +51,7 @@ const rest = sorted.filter(a => a.id !== featured?.id);
     .bottom-title { font-family: Georgia, serif; font-size: 15px; line-height: 1.4; color: #1e2d3d; margin-bottom: 0.4rem; font-weight: normal; }
     .bottom-snippet { font-size: 12px; color: #5a6472; line-height: 1.6; margin-bottom: 0.5rem; }
     .bottom-date { font-size: 11px; color: #8a94a0; }
+    .empty-note { padding: 1rem 2rem 2rem; font-size: 13px; color: #8a94a0; }
     .footer { padding: 1.5rem 2rem; border-top: 1px solid #c8c3ba; display: flex; justify-content: space-between; align-items: center; }
     .footer-logo { font-family: Georgia, serif; font-size: 16px; color: #1e2d3d; }
     .footer-logo span { color: #14919B; }
@@ -60,83 +61,87 @@ const rest = sorted.filter(a => a.id !== featured?.id);
 
   <div class="nav-top">
     <div style="display:flex; gap:20px;">
-      <a href="/">Home</a>
-      <a href="/about-tsp">About The Small Print</a>
-      <a href="/about">Meet the author</a>
+      <a href="/es">Inicio</a>
+      <a href="/es/acerca-de">Acerca de The Small Print</a>
+      <a href="/es/autora">Conoce a la autora</a>
     </div>
-    <a href="/es" class="nav-lang">En español</a>
+    <a href="/" class="nav-lang">In English</a>
   </div>
 
   <div class="masthead">
     <div class="masthead-name">The Small <span>Print</span></div>
-    <div class="masthead-sub">From the study to you</div>
+    <div class="masthead-sub">Desde el estudio directo a ti</div>
   </div>
 
   <div class="nav-sections">
-    <a href="/" class="nav-section active">All articles</a>
-    <a href="/about-tsp" class="nav-section">About The Small Print</a>
-    <a href="/about" class="nav-section">Meet the author</a>
+    <a href="/es" class="nav-section active">Todos los artículos</a>
+    <a href="/es/acerca-de" class="nav-section">Acerca de The Small Print</a>
+    <a href="/es/autora" class="nav-section">Conoce a la autora</a>
     <a href="#tsp-section" class="nav-section">The Small Print §</a>
   </div>
 
   <div class="featured">
     <div class="featured-main">
-      <div class="issue-label">Latest issue · {featured?.data.issue}</div>
+      <div class="issue-label">Último número · {featured?.data.issue}</div>
 	  <h1 class="featured-title">{featured?.data.title}</h1>
 	  <p class="featured-deck">{featured?.data.deck}</p>
       <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
       <span class="tag">{featured?.data.topic}</span>
-      <span class="meta-date">{featured?.data.date} · {featured?.data.readTime} read</span>
+      <span class="meta-date">{featured?.data.date} · {featured?.data.readTime} de lectura</span>
     </div>
-     <a href={`/articles/${featured?.id}`} class="read-more">Read the full article →</a>
+     <a href={`/es/articulos/${featured?.id}`} class="read-more">Leer el artículo completo →</a>
       {featured?.data.image && (
         <img class="featured-image" src={featured.data.image} alt={featured.data.imageAlt || featured.data.title} />
       )}
     </div>
     <div class="featured-rule"></div>
     <div class="featured-side">
-      <div class="featured-side-note">Next issue coming soon — a new article every two weeks.</div>
+      <div class="featured-side-note">Próxima edición en camino — un artículo nuevo cada dos semanas.</div>
     </div>
   </div>
 
   <div class="tsp-strip">
     <div class="tsp-strip-label">The Small Print §</div>
-    <div class="tsp-strip-text">So, what did the study actually find?</div>
-    <div class="tsp-strip-label">Every article · Every issue</div>
+    <div class="tsp-strip-text">Entonces, ¿qué encontró realmente el estudio?</div>
+    <div class="tsp-strip-label">Cada artículo · Cada edición</div>
   </div>
 
   <div class="section-header" id="tsp-section">
-    <div class="section-header-title">Past issues</div>
+    <div class="section-header-title">Ediciones anteriores</div>
     <div class="section-header-rule"></div>
   </div>
 
-  <div class="bottom-grid">
-  {rest.slice(2).map(article => (
-    <div class="bottom-card">
-      {article.data.image && (
-        <img class="bottom-image" src={article.data.image} alt={article.data.imageAlt || article.data.title} />
-      )}
-      <div class="bottom-tag">{article.data.topic}</div>
-      <div class="bottom-title">
-        <a href={`/articles/${article.id}`} style="text-decoration:none; color:inherit;">
-          {article.data.title}
-        </a>
+  {rest.length > 0 ? (
+    <div class="bottom-grid">
+    {rest.map(article => (
+      <div class="bottom-card">
+        {article.data.image && (
+          <img class="bottom-image" src={article.data.image} alt={article.data.imageAlt || article.data.title} />
+        )}
+        <div class="bottom-tag">{article.data.topic}</div>
+        <div class="bottom-title">
+          <a href={`/es/articulos/${article.id}`} style="text-decoration:none; color:inherit;">
+            {article.data.title}
+          </a>
+        </div>
+        <div class="bottom-snippet">{article.data.deck}</div>
+        <div class="bottom-date">{article.data.date}</div>
       </div>
-      <div class="bottom-snippet">{article.data.deck}</div>
-      <div class="bottom-date">{article.data.date}</div>
+    ))}
     </div>
-  ))}
-  </div>
+  ) : (
+    <div class="empty-note">Todavía no hay más artículos en español.</div>
+  )}
 
   <div class="footer">
     <div class="footer-logo">The Small <span>Print</span></div>
     <div class="footer-links">
-      <a href="/about-tsp">About</a>
-      <a href="/about">Author</a>
-      <a href="mailto:dianachj@thesmallprint.pub">Contact</a>
-      <a href="/es">En español</a>
+      <a href="/es/acerca-de">Acerca de</a>
+      <a href="/es/autora">Autora</a>
+      <a href="mailto:dianachj@thesmallprint.pub">Contacto</a>
+      <a href="/">In English</a>
     </div>
-    <div class="footer-note">Independent · Bilingual · Deutschland</div>
-	<div style="font-size:10px; color:#5a6d7e; margin-top:4px;">Built by Diana Chiang Jurado with Claude · 2026</div>
+    <div class="footer-note">Independiente · Bilingüe · Friburgo</div>
+	<div style="font-size:10px; color:#5a6d7e; margin-top:4px;">Hecho por Diana Chiang Jurado con Claude · 2026</div>
   </div>
 </Layout>
