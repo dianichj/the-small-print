@@ -1,157 +1,157 @@
 # Zenodo deposits for The Small Print
 
-Genera los metadatos de Zenodo para cada artículo y, opcionalmente, crea el depósito
-(borrador) vía la API de Zenodo, para obtener un DOI individual por artículo.
+Generates Zenodo metadata for each article and, optionally, creates the deposit
+(draft) via the Zenodo API, to get an individual DOI per article.
 
-⚠️ **Los DOIs son permanentes.** Una vez publicado un depósito en Zenodo, no se puede
-borrar ni reasignar el DOI — como mucho se puede subir una nueva versión. Por eso el
-script nunca publica automáticamente: solo crea/actualiza un **borrador**, y publicar
-requiere pasar `--publish` y además confirmar interactivamente escribiendo `PUBLISH`.
+⚠️ **DOIs are permanent.** Once a deposit is published on Zenodo, the DOI cannot be
+deleted or reassigned — at most you can upload a new version. That's why the script
+never publishes automatically: it only creates/updates a **draft**, and publishing
+requires passing `--publish` and also confirming interactively by typing `PUBLISH`.
 
-## 1. Configuración inicial (una sola vez)
+## 1. One-time setup
 
-### Instalar dependencias
+### Install dependencies
 
 ```bash
 cd zenodo
 npm install
 ```
 
-### Obtener el token de Zenodo
+### Get a Zenodo token
 
-1. Entrá a tu cuenta personal de Zenodo (no una cuenta institucional) → **Applications**
+1. Log into your personal Zenodo account (not an institutional one) → **Applications**
    → **Personal access tokens** → **New token**.
-2. Marcá los scopes `deposit:write` y `deposit:actions`.
-3. Copiá el token (Zenodo solo lo muestra una vez) y exportalo en tu terminal:
+2. Check the `deposit:write` and `deposit:actions` scopes.
+3. Copy the token (Zenodo only shows it once) and export it in your terminal:
 
 ```bash
-export ZENODO_TOKEN="tu-token-aquí"
+export ZENODO_TOKEN="your-token-here"
 ```
 
-Recomendado: probar todo primero contra **sandbox.zenodo.org**, que es un entorno de
-pruebas separado con su propio token (se obtiene igual, pero desde
-https://sandbox.zenodo.org). Usá la flag `--sandbox` en el script para apuntar ahí.
+Recommended: test everything against **sandbox.zenodo.org** first, a separate testing
+environment with its own token (obtained the same way, but from
+https://sandbox.zenodo.org). Use the `--sandbox` flag in the script to point there.
 
-### Crear la Community "The Small Print"
+### Create the "The Small Print" Community
 
-1. En Zenodo (cuenta personal) → **Communities** → **New community**.
-2. Identifier: `the-small-print` (tiene que coincidir exactamente con el valor que
-   usa `metadata-template.json` en `communities[0].identifier`).
-3. Nombre visible: "The Small Print". Descripción breve del proyecto editorial.
-4. No hace falta curar/aprobar depósitos manualmente si sos la única que deposita,
-   pero podés dejar la opción activada si preferís revisar antes de que un depósito
-   quede asociado a la community.
+1. On Zenodo (personal account) → **Communities** → **New community**.
+2. Identifier: `the-small-print` (must exactly match the value used in
+   `metadata-template.json` under `communities[0].identifier`).
+3. Display name: "The Small Print". Short description of the editorial project.
+4. You don't need to manually curate/approve deposits if you're the only one
+   depositing, but you can leave that option on if you'd rather review before a
+   deposit gets associated with the community.
 
-### Completar tu ORCID en el template
+### Fill in your ORCID in the template
 
-Editá `zenodo/metadata-template.json` y reemplazá `<ORCID>` por tu ORCID iD real
-(formato `0000-0000-0000-0000`). Si no tenés uno, se crea gratis en
-https://orcid.org/register. Es un valor fijo — se completa una sola vez acá, no por
-artículo.
+Edit `zenodo/metadata-template.json` and replace `<ORCID>` with your real ORCID iD
+(format `0000-0000-0000-0000`). If you don't have one, get one free at
+https://orcid.org/register. It's a fixed value — filled in once here, not per article.
 
-## 2. Generar los metadatos de un artículo
+## 2. Generate metadata for an article
 
 ```bash
-node generate-metadata.js ../src/content/articles/issue-01-article-01.md
+node generate-metadata.js ../src/content/articles/issue-01-is-coffee-good-for-your-heart.md
 ```
 
-Esto lee el frontmatter del artículo y escribe
-`zenodo/output/issue-01-article-01.en.json` con los metadatos listos para Zenodo.
+This reads the article's frontmatter and writes
+`zenodo/output/issue-01-is-coffee-good-for-your-heart.en.json` with metadata ready
+for Zenodo.
 
-Mapeo de campos:
+Field mapping:
 
-| Frontmatter del artículo | Campo de Zenodo |
+| Article frontmatter | Zenodo field |
 |---|---|
 | `title` | `title` |
-| `deck` + aviso de independencia editorial | `description` |
-| `tags` (o `topic` si no hay `tags`) | `keywords` |
-| `paperDOI` | `related_identifiers` — relación `references` |
-| URL del artículo en el sitio (calculada) | `related_identifiers` — relación `isVariantFormOf` |
-| carpeta del artículo (`articles/` o `articles-es/`) o `language` explícito en el frontmatter | `language` |
+| `deck` + editorial independence notice | `description` |
+| `tags` (or `topic` if there are no `tags`) | `keywords` |
+| `paperDOI` | `related_identifiers` — `references` relation |
+| Article URL on the site (computed) | `related_identifiers` — `isVariantFormOf` relation |
+| Article's folder (`articles/` or `articles-es/`) or explicit `language` in the frontmatter | `language` |
 
-El resto de los campos (`upload_type`, `creators`, `license`, `communities`, etc.)
-salen fijos de `metadata-template.json`.
+The rest of the fields (`upload_type`, `creators`, `license`, `communities`, etc.)
+come fixed from `metadata-template.json`.
 
-### La versión en el otro idioma (`isTranslationOf`)
+### The version in the other language (`isTranslationOf`)
 
-Cuando ya publicaste la versión en inglés (o en español) de un artículo y tenés su
-DOI, pasáselo al generar la otra versión para declarar la relación `isTranslationOf`:
+Once you've published the English (or Spanish) version of an article and have its
+DOI, pass it in when generating the other version to declare the `isTranslationOf`
+relation:
 
 ```bash
-node generate-metadata.js ../src/content/articles-es/issue-01-article-01.md \
+node generate-metadata.js ../src/content/articles-es/issue-01-le-hace-bien-el-cafe-a-tu-corazon.md \
   --translation-doi 10.5281/zenodo.1234567
 ```
 
-### Otras opciones útiles
+### Other useful options
 
 ```bash
-# Fecha de publicación exacta (el frontmatter solo tiene "June 2026", no el día)
-node generate-metadata.js ../src/content/articles/issue-01-article-01.md --date 2026-06-15
+# Exact publication date (the frontmatter only has "August 2026", not the day)
+node generate-metadata.js ../src/content/articles/issue-01-is-coffee-good-for-your-heart.md --date 2026-08-25
 
-# Dónde escribir el JSON generado
-node generate-metadata.js ../src/content/articles/issue-01-article-01.md --out /tmp/meta.json
+# Where to write the generated JSON
+node generate-metadata.js ../src/content/articles/issue-01-is-coffee-good-for-your-heart.md --out /tmp/meta.json
 ```
 
-El script va a avisar por consola (⚠) si no pudo adivinar la fecha de publicación o
-si el ORCID sigue siendo el placeholder — no falla, pero hay que revisarlo antes de
-depositar.
+The script will warn in the console (⚠) if it couldn't guess the publication date or
+if the ORCID is still the placeholder — it doesn't fail, but you should check it
+before depositing.
 
-## 3. Crear el depósito (borrador) en Zenodo
+## 3. Create the (draft) deposit on Zenodo
 
 ```bash
-node generate-metadata.js ../src/content/articles/issue-01-article-01.md \
+node generate-metadata.js ../src/content/articles/issue-01-is-coffee-good-for-your-heart.md \
   --deposit \
-  --pdf ../ruta/al/articulo.pdf \
+  --pdf ../path/to/article.pdf \
   --sandbox
 ```
 
-Esto crea un depósito nuevo en modo **borrador**, le carga los metadatos generados,
-sube el PDF, y te devuelve el link al borrador en Zenodo para que lo revises a mano.
-Sacá `--sandbox` cuando quieras hacerlo contra Zenodo real.
+This creates a new deposit in **draft** mode, uploads the generated metadata, uploads
+the PDF, and returns the link to the draft on Zenodo so you can review it by hand.
+Drop `--sandbox` when you want to do it against the real Zenodo.
 
-**El depósito NUNCA se publica en este paso.** Sigue siendo un borrador editable
-hasta que corras el comando de nuevo con `--publish`.
+**The deposit is NEVER published at this step.** It stays an editable draft until you
+run the command again with `--publish`.
 
-## 4. Publicar (irreversible)
+## 4. Publish (irreversible)
 
 ```bash
-node generate-metadata.js ../src/content/articles/issue-01-article-01.md \
+node generate-metadata.js ../src/content/articles/issue-01-is-coffee-good-for-your-heart.md \
   --deposit --publish \
-  --pdf ../ruta/al/articulo.pdf
+  --pdf ../path/to/article.pdf
 ```
 
-El script va a:
-1. Crear/actualizar el borrador igual que en el paso 3.
-2. Mostrar una advertencia de que publicar es permanente, con el link al borrador.
-3. Pedir que escribas literalmente `PUBLISH` para confirmar. Cualquier otra cosa
-   cancela — el borrador queda intacto y lo podés publicar después a mano desde el
-   dashboard de Zenodo.
+The script will:
+1. Create/update the draft just like in step 3.
+2. Show a warning that publishing is permanent, with the link to the draft.
+3. Ask you to type `PUBLISH` literally to confirm. Anything else cancels — the draft
+   stays intact and you can publish it later by hand from the Zenodo dashboard.
 
-## 5. Qué revisar antes de publicar (checklist)
+## 5. What to check before publishing (checklist)
 
-Antes de escribir `PUBLISH`, revisá el borrador en Zenodo (el link que imprime el
-script) y confirmá:
+Before typing `PUBLISH`, review the draft on Zenodo (the link the script prints) and
+confirm:
 
-- [ ] **Título** coincide exactamente con el del artículo.
-- [ ] **ORCID** es el tuyo, no el placeholder.
-- [ ] **Descripción** se lee bien y termina con la línea de independencia editorial.
-- [ ] **Licencia**: CC BY 4.0.
-- [ ] **Keywords** son razonables (si el artículo no tenía `tags`, va a haber caído
-      en un único keyword genérico sacado de `topic` — considerá agregarle `tags`
-      al frontmatter antes de depositar).
-- [ ] **`related_identifiers`**: el DOI del paper original resuelve bien en
-      doi.org, y la URL del artículo en el sitio está en producción (no en
-      localhost) y funciona.
-- [ ] Si aplica, el DOI de `isTranslationOf` es correcto y resuelve.
-- [ ] **`publication_date`** es la fecha real, no una fecha adivinada por el script
-      (revisá el aviso ⚠ en la consola).
-- [ ] **PDF adjunto** es la versión final del artículo, no un borrador.
-- [ ] **Community**: aparece "The Small Print".
-- [ ] **Idioma**: `eng` para artículos en inglés, `spa` para español.
+- [ ] **Title** matches the article's exactly.
+- [ ] **ORCID** is yours, not the placeholder.
+- [ ] **Description** reads well and ends with the editorial independence line.
+- [ ] **License**: CC BY 4.0.
+- [ ] **Keywords** are reasonable (if the article had no `tags`, it will have fallen
+      back to a single generic keyword from `topic` — consider adding `tags` to the
+      frontmatter before depositing).
+- [ ] **`related_identifiers`**: the original paper's DOI resolves correctly on
+      doi.org, and the article's URL on the site is live in production (not
+      localhost) and works.
+- [ ] If applicable, the `isTranslationOf` DOI is correct and resolves.
+- [ ] **`publication_date`** is the real date, not a date guessed by the script
+      (check the ⚠ warning in the console).
+- [ ] **Attached PDF** is the final version of the article, not a draft.
+- [ ] **Community**: "The Small Print" shows up.
+- [ ] **Language**: `eng` for English articles, `spa` for Spanish.
 
-## Variables de entorno
+## Environment variables
 
-| Variable | Para qué | Default |
+| Variable | What it's for | Default |
 |---|---|---|
-| `ZENODO_TOKEN` | Autenticación con la API de Zenodo | — (requerida para `--deposit`) |
-| `SITE_URL` | Base para construir la URL del artículo (`isVariantFormOf`) | `https://thesmallprint.pub` |
+| `ZENODO_TOKEN` | Authentication with the Zenodo API | — (required for `--deposit`) |
+| `SITE_URL` | Base for building the article URL (`isVariantFormOf`) | `https://thesmallprint.pub` |
