@@ -58,10 +58,14 @@ const rest = sorted.filter(a => a.id !== featured?.id);
     .footer-note { font-size: 11px; color: #8a94a0; }
 
     @media (max-width: 720px) {
-      .nav-top { flex-wrap: wrap; height: auto; padding: 0.75rem 1.25rem; row-gap: 8px; }
-      .nav-top > div { flex-wrap: wrap; gap: 10px 16px; }
+      .masthead { padding: 1rem 1.25rem 0.75rem; }
+      .masthead-name { font-size: 30px; }
+      .masthead-sub { font-size: 10px; }
+      .nav-top { flex-wrap: wrap; height: auto; padding: 0.6rem 1.25rem; row-gap: 6px; }
+      .nav-top a { font-size: 10px; }
+      .nav-top > div { flex-wrap: wrap; gap: 8px 14px; }
       .nav-sections { overflow-x: auto; justify-content: flex-start; -webkit-overflow-scrolling: touch; }
-      .nav-section { white-space: nowrap; flex-shrink: 0; }
+      .nav-section { white-space: nowrap; flex-shrink: 0; font-size: 11px; padding: 8px 14px; }
       .featured { grid-template-columns: 1fr; padding: 1.5rem 1.25rem; }
       .featured-rule { display: none; }
       .featured-main { padding-right: 0; }
