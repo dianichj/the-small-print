@@ -1,0 +1,201 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Datenschutzerklärung"
+  lang="de"
+  description="Datenschutzerklärung gemäß DSGVO für The Small Print."
+  alternateUrls={{ de: '/datenschutz/', en: '/datenschutz-en/' }}
+>
+  <style>
+    .nav-top { border-bottom: 1px solid #c8c3ba; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 44px; background: #f8f6f1; }
+    .nav-top a { font-size: 11px; color: #8a94a0; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
+    .nav-top a:hover { color: #0d7377; }
+    .nav-lang { color: #0d7377 !important; border: 0.5px solid #0d7377; padding: 3px 10px; border-radius: 20px; }
+    .masthead { padding: 1.5rem 2rem 1rem; text-align: center; border-bottom: 3px solid #1e2d3d; }
+    .masthead-name { font-family: Georgia, serif; font-size: 42px; color: #1e2d3d; letter-spacing: -0.5px; line-height: 1; }
+    .masthead-name span { color: #14919B; }
+    .masthead-sub { font-size: 11px; color: #8a94a0; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 6px; }
+    .nav-sections { display: flex; justify-content: center; border-bottom: 1px solid #c8c3ba; }
+    .nav-section { font-size: 12px; padding: 10px 20px; color: #5a6472; text-decoration: none; letter-spacing: 0.04em; border-bottom: 2px solid transparent; }
+    .nav-section.active { color: #1e2d3d; border-bottom: 2px solid #1e2d3d; font-weight: 500; }
+    .nav-section:hover { color: #0d7377; }
+    .page-body { max-width: 680px; margin: 0 auto; padding: 3rem 2rem; }
+    .opening-line { font-family: Georgia, serif; font-size: 28px; color: #1e2d3d; line-height: 1.3; margin-bottom: 2rem; font-weight: normal; }
+    .prose { font-size: 16px; color: #5a6472; line-height: 1.8; margin-bottom: 1.5rem; }
+    .prose strong { color: #1e2d3d; font-weight: 500; }
+    .prose a { color: #0d7377; }
+    .prose ul { margin: 0 0 1.5rem 1.25rem; padding: 0; }
+    .prose li { margin-bottom: 0.5rem; }
+    .divider { height: 1px; background: #e8e4db; margin: 2rem 0; }
+    .section-label { font-size: 11px; color: #8a94a0; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; margin-top: 2.5rem; }
+    .section-label:first-of-type { margin-top: 0; }
+    .placeholder { background: rgba(13, 115, 119, 0.08); border: 1px dashed #0d7377; color: #0d7377; padding: 1px 6px; border-radius: 3px; font-weight: 600; font-style: normal; font-size: 13px; letter-spacing: 0.02em; }
+    .lang-note { font-size: 13px; color: #8a94a0; margin-bottom: 2.5rem; }
+    .info-row { display: flex; gap: 1rem; align-items: baseline; margin-bottom: 0.6rem; }
+    .info-row:last-child { margin-bottom: 0; }
+    .info-key { font-size: 11px; color: #8a94a0; letter-spacing: 0.04em; width: 72px; flex-shrink: 0; }
+    .info-val { font-size: 15px; color: #1e2d3d; line-height: 1.6; }
+    .info-val a { color: #0d7377; }
+    .legal-card { background: #fff; border: 1px solid #e8e4db; border-radius: 6px; padding: 1.75rem; margin-bottom: 1.5rem; }
+    .legal-section { padding-bottom: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid #e8e4db; }
+    .legal-section:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: none; }
+    .legal-block-title { font-family: Georgia, serif; font-size: 18px; color: #1e2d3d; margin-bottom: 0.9rem; font-weight: normal; }
+    .legal-section p.prose { margin-bottom: 1rem; }
+    .legal-section p.prose:last-child { margin-bottom: 0; }
+    .legal-section ul.prose { margin-bottom: 1rem; }
+    .legal-section ul.prose:last-child { margin-bottom: 0; }
+    .footer { padding: 1.5rem 2rem; border-top: 1px solid #c8c3ba; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-family: Georgia, serif; font-size: 16px; color: #1e2d3d; }
+    .footer-logo span { color: #14919B; }
+    .footer-links a { font-size: 11px; color: #8a94a0; text-decoration: none; margin-left: 16px; }
+    .footer-note { font-size: 11px; color: #8a94a0; }
+
+    @media (max-width: 720px) {
+      .masthead { padding: 1rem 1.25rem 0.75rem; }
+      .masthead-name { font-size: 30px; }
+      .masthead-sub { font-size: 10px; }
+      .nav-top { height: auto; padding: 0.6rem 1.25rem; overflow-x: auto; justify-content: flex-start; -webkit-overflow-scrolling: touch; }
+      .nav-top a { font-size: 10px; }
+      .nav-top > div { flex-wrap: nowrap; gap: 14px; flex-shrink: 0; white-space: nowrap; }
+      .nav-lang { flex-shrink: 0; white-space: nowrap; margin-left: 14px; }
+      .nav-sections { overflow-x: auto; justify-content: flex-start; -webkit-overflow-scrolling: touch; mask-image: linear-gradient(to right, black 88%, transparent 100%); -webkit-mask-image: linear-gradient(to right, black 88%, transparent 100%); }
+      .nav-section { white-space: nowrap; flex-shrink: 0; font-size: 11px; padding: 8px 14px; }
+      .footer { flex-direction: column; align-items: flex-start; gap: 10px; padding: 1.25rem; }
+      .footer-links { display: flex; flex-wrap: wrap; gap: 6px 14px; }
+      .footer-links a { margin-left: 0; }
+    }
+  </style>
+
+  <div class="nav-top">
+    <div style="display:flex; gap:20px;">
+      <a href="/">Home</a>
+      <a href="/about-tsp">About this publication</a>
+      <a href="/about">Meet the author</a>
+    </div>
+    <a href="/datenschutz-en" class="nav-lang">In English</a>
+  </div>
+
+  <div class="masthead">
+    <div class="masthead-name">The Small <span>Print</span></div>
+    <div class="masthead-sub">From the study to you</div>
+  </div>
+
+  <div class="nav-sections">
+    <a href="/" class="nav-section">All articles</a>
+    <a href="/about-tsp" class="nav-section">About The Small Print</a>
+    <a href="/about" class="nav-section">Meet the author</a>
+    <a href="/#tsp-section" class="nav-section">The Small Print §</a>
+  </div>
+
+  <div class="page-body">
+
+    <div class="opening-line">Datenschutzerklärung</div>
+
+    <p class="lang-note">Diese Seite ist die rechtlich verbindliche Fassung. Eine <a href="/datenschutz-en" style="color:#0d7377;">informative englische Übersetzung</a> ist ebenfalls verfügbar.</p>
+
+    <div class="legal-card">
+      <div class="legal-section">
+        <div class="legal-block-title">Verantwortlicher</div>
+        <p class="prose" style="margin-bottom: 0.85rem;">
+          Verantwortlich für die Datenverarbeitung auf dieser Website im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:
+        </p>
+        <div class="info-row"><div class="info-key">Name</div><div class="info-val">Diana Chiang Jurado</div></div>
+        <div class="info-row"><div class="info-key">Adresse</div><div class="info-val">Käthe-Kollwitz-Straße 7, 79312 Emmendingen, Deutschland</div></div>
+        <div class="info-row"><div class="info-key">E-Mail</div><div class="info-val"><a href="mailto:dianachj@thesmallprint.pub">dianachj@thesmallprint.pub</a></div></div>
+      </div>
+
+      <div class="legal-section">
+        <div class="legal-block-title">Allgemeines</div>
+        <p class="prose">
+          Diese Website ist als statische Seite konzipiert. Es werden keine Cookies gesetzt, keine Analyse- oder Tracking-Tools eingesetzt und keine Kontaktformulare oder Newsletter-Anmeldungen angeboten. Es findet keine Verarbeitung personenbezogener Daten durch aktive Interaktion mit dieser Website statt, mit Ausnahme der technisch notwendigen Verarbeitung von Server-Logdateien durch unseren Hosting-Anbieter (siehe unten).
+        </p>
+      </div>
+
+      <div class="legal-section">
+        <div class="legal-block-title">Hosting bei GitHub Pages</div>
+        <p class="prose">
+          Diese Website wird über GitHub Pages gehostet, einen Dienst der GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA (für Nutzer:innen im Europäischen Wirtschaftsraum: GitHub B.V., Vijzelstraat 68-72, 1017 HL Amsterdam, Niederlande).
+        </p>
+        <p class="prose">Beim Aufruf dieser Website verarbeitet GitHub Pages automatisch technische Daten, die Ihr Browser übermittelt, unter anderem:</p>
+        <ul class="prose">
+          <li>IP-Adresse</li>
+          <li>Datum und Uhrzeit der Anfrage</li>
+          <li>aufgerufene Seite bzw. Datei</li>
+          <li>übertragene Datenmenge</li>
+          <li>verwendeter Browser und Betriebssystem</li>
+          <li>Referrer-URL (die zuvor besuchte Seite)</li>
+        </ul>
+        <p class="prose">
+          Diese Daten werden von GitHub in sogenannten Server-Logdateien gespeichert, um die technische Auslieferung dieser Website sowie deren Stabilität und Sicherheit zu gewährleisten. Eine Zusammenführung dieser Daten mit anderen Datenquellen findet unsererseits nicht statt.
+        </p>
+        <p class="prose">
+          Rechtsgrundlage für diese Verarbeitung ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der sicheren und stabilen Bereitstellung dieser Website).
+        </p>
+        <p class="prose">
+          Weitere Informationen zur Datenverarbeitung durch GitHub finden Sie in der <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">Datenschutzerklärung von GitHub</a>.
+        </p>
+      </div>
+
+      <div class="legal-section">
+        <div class="legal-block-title">Keine Cookies, kein Tracking</div>
+        <p class="prose">
+          Diese Website verwendet keine Cookies, keine Analyse-Dienste (z. B. Google Analytics oder vergleichbare Tools) und keine Tracking- oder Werbetechnologien. Es werden keine Nutzungsprofile erstellt.
+        </p>
+      </div>
+
+      <div class="legal-section">
+        <div class="legal-block-title">Keine Formulare, kein Newsletter</div>
+        <p class="prose">
+          Diese Website bietet keine Kontaktformulare, keine Kommentarfunktion und keine Newsletter-Anmeldung an. Kontakt kann ausschließlich per E-Mail aufgenommen werden. Die dabei von Ihnen freiwillig übermittelten Daten (z. B. Ihre E-Mail-Adresse und der Inhalt Ihrer Nachricht) werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet (Art. 6 Abs. 1 lit. f DSGVO) und nicht an Dritte weitergegeben.
+        </p>
+      </div>
+
+      <div class="legal-section">
+        <div class="legal-block-title">Ihre Rechte nach der DSGVO</div>
+        <p class="prose">Ihnen stehen nach Maßgabe der DSGVO folgende Rechte gegenüber dem Verantwortlichen zu:</p>
+        <ul class="prose">
+          <li>Recht auf Auskunft (Art. 15 DSGVO)</li>
+          <li>Recht auf Berichtigung (Art. 16 DSGVO)</li>
+          <li>Recht auf Löschung (Art. 17 DSGVO)</li>
+          <li>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+          <li>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
+          <li>Recht auf Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)</li>
+        </ul>
+        <p class="prose">
+          Zur Ausübung dieser Rechte genügt eine formlose E-Mail an <a href="mailto:dianachj@thesmallprint.pub">dianachj@thesmallprint.pub</a>.
+        </p>
+      </div>
+
+      <div class="legal-section">
+        <div class="legal-block-title">Beschwerderecht bei einer Aufsichtsbehörde</div>
+        <p class="prose">
+          Sie haben zudem das Recht, sich bei einer Datenschutz-Aufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten durch uns zu beschweren (Art. 77 DSGVO).
+        </p>
+        <p class="prose">
+          Zuständige Aufsichtsbehörde (Baden-Württemberg): Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Baden-Württemberg, Lautenschlagerstraße 20, 70173 Stuttgart.
+        </p>
+        <p class="prose">
+          Eine vollständige Liste aller deutschen Datenschutz-Aufsichtsbehörden finden Sie bei der <a href="https://www.bfdi.bund.de/DE/Service/Anschriften/Laender/Laender-node.html" target="_blank" rel="noopener noreferrer">BfDI</a>.
+        </p>
+      </div>
+    </div>
+
+    <p class="prose" style="font-size: 13px; color: #8a94a0;">Stand: August 2026</p>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-logo">The Small <span>Print</span></div>
+    <div class="footer-links">
+      <a href="/about-tsp">About</a>
+      <a href="/about">Author</a>
+      <a href="mailto:dianachj@thesmallprint.pub">Contact</a>
+      <a href="/datenschutz-en">In English</a>
+      <a href="/impressum">Impressum</a>
+      <a href="/datenschutz">Datenschutz</a>
+    </div>
+    <div class="footer-note">Independent · Bilingual · Freiburg</div>
+  </div>
+</Layout>

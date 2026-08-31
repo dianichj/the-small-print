@@ -22,6 +22,7 @@ const canonicalURL = new URL(Astro.url.pathname, SITE_URL).toString();
     <link rel="canonical" href={canonicalURL} />
     {alternateUrls?.en && <link rel="alternate" hreflang="en" href={new URL(alternateUrls.en, SITE_URL).toString()} />}
     {alternateUrls?.es && <link rel="alternate" hreflang="es" href={new URL(alternateUrls.es, SITE_URL).toString()} />}
+    {alternateUrls?.de && <link rel="alternate" hreflang="de" href={new URL(alternateUrls.de, SITE_URL).toString()} />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet" />

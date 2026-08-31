@@ -1,0 +1,157 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Impressum"
+  lang="de"
+  description="Angaben gemäß § 5 DDG für The Small Print."
+  alternateUrls={{ de: '/impressum/', en: '/impressum-en/' }}
+>
+  <style>
+    .nav-top { border-bottom: 1px solid #c8c3ba; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 44px; background: #f8f6f1; }
+    .nav-top a { font-size: 11px; color: #8a94a0; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
+    .nav-top a:hover { color: #0d7377; }
+    .nav-lang { color: #0d7377 !important; border: 0.5px solid #0d7377; padding: 3px 10px; border-radius: 20px; }
+    .masthead { padding: 1.5rem 2rem 1rem; text-align: center; border-bottom: 3px solid #1e2d3d; }
+    .masthead-name { font-family: Georgia, serif; font-size: 42px; color: #1e2d3d; letter-spacing: -0.5px; line-height: 1; }
+    .masthead-name span { color: #14919B; }
+    .masthead-sub { font-size: 11px; color: #8a94a0; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 6px; }
+    .nav-sections { display: flex; justify-content: center; border-bottom: 1px solid #c8c3ba; }
+    .nav-section { font-size: 12px; padding: 10px 20px; color: #5a6472; text-decoration: none; letter-spacing: 0.04em; border-bottom: 2px solid transparent; }
+    .nav-section.active { color: #1e2d3d; border-bottom: 2px solid #1e2d3d; font-weight: 500; }
+    .nav-section:hover { color: #0d7377; }
+    .page-body { max-width: 680px; margin: 0 auto; padding: 3rem 2rem; }
+    .opening-line { font-family: Georgia, serif; font-size: 28px; color: #1e2d3d; line-height: 1.3; margin-bottom: 2rem; font-weight: normal; }
+    .prose { font-size: 16px; color: #5a6472; line-height: 1.8; margin-bottom: 1.5rem; }
+    .prose strong { color: #1e2d3d; font-weight: 500; }
+    .prose a { color: #0d7377; }
+    .divider { height: 1px; background: #e8e4db; margin: 2rem 0; }
+    .section-label { font-size: 11px; color: #8a94a0; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; margin-top: 2.5rem; }
+    .section-label:first-of-type { margin-top: 0; }
+    .placeholder { background: rgba(13, 115, 119, 0.08); border: 1px dashed #0d7377; color: #0d7377; padding: 1px 6px; border-radius: 3px; font-weight: 600; font-style: normal; font-size: 13px; letter-spacing: 0.02em; }
+    .lang-note { font-size: 13px; color: #8a94a0; margin-bottom: 2.5rem; }
+    .info-row { display: flex; gap: 1rem; align-items: baseline; margin-bottom: 0.6rem; }
+    .info-row:last-child { margin-bottom: 0; }
+    .info-key { font-size: 11px; color: #8a94a0; letter-spacing: 0.04em; width: 72px; flex-shrink: 0; }
+    .info-val { font-size: 15px; color: #1e2d3d; line-height: 1.6; }
+    .info-val a { color: #0d7377; }
+    .legal-card { background: #fff; border: 1px solid #e8e4db; border-radius: 6px; padding: 1.75rem; }
+    .legal-section { padding-bottom: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid #e8e4db; }
+    .legal-section:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: none; }
+    .legal-block-title { font-family: Georgia, serif; font-size: 18px; color: #1e2d3d; margin-bottom: 0.9rem; font-weight: normal; }
+    .legal-section p.prose { margin-bottom: 1rem; }
+    .legal-section p.prose:last-child { margin-bottom: 0; }
+    .footer { padding: 1.5rem 2rem; border-top: 1px solid #c8c3ba; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-family: Georgia, serif; font-size: 16px; color: #1e2d3d; }
+    .footer-logo span { color: #14919B; }
+    .footer-links a { font-size: 11px; color: #8a94a0; text-decoration: none; margin-left: 16px; }
+    .footer-note { font-size: 11px; color: #8a94a0; }
+
+    @media (max-width: 720px) {
+      .masthead { padding: 1rem 1.25rem 0.75rem; }
+      .masthead-name { font-size: 30px; }
+      .masthead-sub { font-size: 10px; }
+      .nav-top { height: auto; padding: 0.6rem 1.25rem; overflow-x: auto; justify-content: flex-start; -webkit-overflow-scrolling: touch; }
+      .nav-top a { font-size: 10px; }
+      .nav-top > div { flex-wrap: nowrap; gap: 14px; flex-shrink: 0; white-space: nowrap; }
+      .nav-lang { flex-shrink: 0; white-space: nowrap; margin-left: 14px; }
+      .nav-sections { overflow-x: auto; justify-content: flex-start; -webkit-overflow-scrolling: touch; mask-image: linear-gradient(to right, black 88%, transparent 100%); -webkit-mask-image: linear-gradient(to right, black 88%, transparent 100%); }
+      .nav-section { white-space: nowrap; flex-shrink: 0; font-size: 11px; padding: 8px 14px; }
+      .footer { flex-direction: column; align-items: flex-start; gap: 10px; padding: 1.25rem; }
+      .footer-links { display: flex; flex-wrap: wrap; gap: 6px 14px; }
+      .footer-links a { margin-left: 0; }
+    }
+  </style>
+
+  <div class="nav-top">
+    <div style="display:flex; gap:20px;">
+      <a href="/">Home</a>
+      <a href="/about-tsp">About this publication</a>
+      <a href="/about">Meet the author</a>
+    </div>
+    <a href="/impressum-en" class="nav-lang">In English</a>
+  </div>
+
+  <div class="masthead">
+    <div class="masthead-name">The Small <span>Print</span></div>
+    <div class="masthead-sub">From the study to you</div>
+  </div>
+
+  <div class="nav-sections">
+    <a href="/" class="nav-section">All articles</a>
+    <a href="/about-tsp" class="nav-section">About The Small Print</a>
+    <a href="/about" class="nav-section">Meet the author</a>
+    <a href="/#tsp-section" class="nav-section">The Small Print §</a>
+  </div>
+
+  <div class="page-body">
+
+    <div class="opening-line">Impressum</div>
+
+    <p class="lang-note">Diese Seite ist die rechtlich verbindliche Fassung. Eine <a href="/impressum-en" style="color:#0d7377;">informative englische Übersetzung</a> ist ebenfalls verfügbar.</p>
+
+    <div class="legal-card">
+      <div class="legal-section">
+        <div class="legal-block-title">Angaben gemäß § 5 DDG</div>
+        <div class="info-row"><div class="info-key">Name</div><div class="info-val">Diana Chiang Jurado</div></div>
+        <div class="info-row"><div class="info-key">Adresse</div><div class="info-val">Käthe-Kollwitz-Straße 7, 79312 Emmendingen, Deutschland</div></div>
+      </div>
+
+      <div class="legal-section">
+        <div class="legal-block-title">Kontakt</div>
+        <div class="info-row"><div class="info-key">E-Mail</div><div class="info-val"><a href="mailto:dianachj@thesmallprint.pub">dianachj@thesmallprint.pub</a></div></div>
+      </div>
+
+      <div class="legal-section">
+        <div class="legal-block-title">Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</div>
+        <div class="info-row"><div class="info-key">Name</div><div class="info-val">Diana Chiang Jurado</div></div>
+        <div class="info-row"><div class="info-key">Adresse</div><div class="info-val">Käthe-Kollwitz-Straße 7, 79312 Emmendingen, Deutschland</div></div>
+      </div>
+
+      <div class="legal-section">
+        <div class="legal-block-title">Haftung für Inhalte</div>
+        <p class="prose">
+          Als Diensteanbieterin sind wir gemäß § 7 Abs. 1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG sind wir als Diensteanbieterin jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+        </p>
+        <p class="prose">
+          Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
+        </p>
+      </div>
+
+      <div class="legal-section">
+        <div class="legal-block-title">Haftung für Links</div>
+        <p class="prose">
+          Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.
+        </p>
+        <p class="prose">
+          Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.
+        </p>
+      </div>
+
+      <div class="legal-section">
+        <div class="legal-block-title">Urheberrecht</div>
+        <p class="prose">
+          Die durch die Betreiberin dieser Website erstellten Inhalte und Werke unterliegen, sofern nicht anders gekennzeichnet, der Creative-Commons-Lizenz <strong>CC BY 4.0</strong> (Namensnennung 4.0 International). Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung sind im Rahmen dieser Lizenz zulässig, sofern die Urheberin (Diana Chiang Jurado) und die ursprüngliche Quelle (thesmallprint.pub) in angemessener Weise genannt werden.
+        </p>
+        <p class="prose">
+          Soweit einzelne Inhalte auf dieser Website nicht von der Betreiberin erstellt wurden, werden die Urheberrechte Dritter beachtet und entsprechende Inhalte als solche gekennzeichnet. Sollten Sie dennoch auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-logo">The Small <span>Print</span></div>
+    <div class="footer-links">
+      <a href="/about-tsp">About</a>
+      <a href="/about">Author</a>
+      <a href="mailto:dianachj@thesmallprint.pub">Contact</a>
+      <a href="/impressum-en">In English</a>
+      <a href="/impressum">Impressum</a>
+      <a href="/datenschutz">Datenschutz</a>
+    </div>
+    <div class="footer-note">Independent · Bilingual · Freiburg</div>
+  </div>
+</Layout>
