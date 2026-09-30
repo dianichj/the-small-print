@@ -6,7 +6,14 @@ peer-reviewed scientific paper in medicine, biomedicine, computational biology o
 translates it honestly for curious readers with no scientific training.
 Not simplified. Not sensationalized. Readable, with the caveats intact.
 
-Static site built with Astro 6, deployed to GitHub Pages (custom domain via `public/CNAME`).
+Static site built with Astro 6 (Node >=22.12.0), deployed to GitHub Pages via
+`.github/workflows/deploy.yml` (custom domain through `public/CNAME`).
+
+## Language with Diana
+
+Diana writes in Spanish. Reply to her in neutral Latin American Spanish, without
+voseo (use "tú", not "vos"), unless she asks otherwise. The same convention applies
+to the Spanish articles themselves — see "Voice and style" below.
 
 ## Where things live
 
@@ -17,7 +24,7 @@ Static site built with Astro 6, deployed to GitHub Pages (custom domain via `pub
 - `src/pages/es/...` — Spanish equivalents (`articulos/`, `acerca-de`, `autora`)
 - `src/pages/impressum*.astro`, `datenschutz*.astro` — German legal pages (DDG § 5 / GDPR). Do not change without Diana's explicit request.
 - `public/images/articles/issueNN/` — hero images, one per language
-- `zenodo/` — tooling to mint a DOI per article
+- `zenodo/` — standalone tool (own `package.json`, run `npm install` inside it once) to mint a DOI per article; see `zenodo/README.md` for the full workflow and pre-publish checklist
 - `docs/` — editorial briefs and drafts (not published)
 
 ## Commands
@@ -31,7 +38,8 @@ Static site built with Astro 6, deployed to GitHub Pages (custom domain via `pub
 - Filename / slug: `issue-NN-<slug-in-that-language>.md` (e.g. `issue-01-is-coffee-good-for-your-heart.md`,
   `issue-01-le-hace-bien-el-cafe-a-tu-corazon.md`).
 - `translationSlug` in each file points to the sibling-language filename (no extension).
-- The homepage automatically features the article with the highest `issue` number.
+- The homepage automatically features the article with the highest `issue` number (by the
+  number inside the string, e.g. "Issue 02" > "Issue 01") — no flag to flip by hand.
 - Frontmatter conventions (copy issue 01 as the template):
   - `date`: "August 2026" / "Agosto 2026"
   - `issue`: "Issue 01" / "Edición 01"
@@ -63,7 +71,8 @@ Spanish headings: "Qué encontró el estudio", "Por qué importa: ...", "Lo que 
 - Prefer commas, colons and full stops over em dashes in article prose.
 - Short paragraphs; one idea each.
 - Spanish is a natural rewrite for Latin American readers, not a literal translation.
-  Use decimal comma in Spanish (0,39) and decimal point in English (0.39).
+  Use neutral Latin American Spanish, without voseo (tuteo is fine: "tú tomas café",
+  never "vos tomás café"). Use decimal comma in Spanish (0,39) and decimal point in English (0.39).
 
 ## Accuracy rules (non-negotiable)
 

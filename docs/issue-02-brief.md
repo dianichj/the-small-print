@@ -2,6 +2,15 @@
 
 Status: brief ready, draft not started. Target: publish before end of October 2026.
 
+## Verification checklist (Stage 3, against the open-access paper)
+
+- [ ] Full author list and order, in `paperAuthors` format ("Surname AB, Surname CD, ...").
+- [ ] Every number in "What the study found" below (percentages, model names, dataset size).
+- [ ] Each of the four findings, checked against the paper's main text/figures.
+- [ ] Amazon Kiro and OpenAI/Hugging Face incidents in "Opening context" — each needs its
+  own reliable source before it goes in the draft; drop it if it can't be sourced.
+- Anything that can't be confirmed: report it to Diana instead of guessing or leaving it unmarked.
+
 ## The paper
 
 - Title: Training large language models on narrow tasks can lead to broad misalignment
@@ -65,3 +74,19 @@ you teach a model doesn't stay where you put it.
 - What headlines will get wrong: "AI turned Nazi" / "AI is secretly evil". Better framing:
   training has side effects we can't yet predict, and bigger models are more sensitive to them.
 - 20% is not 100%: most answers were normal, which is exactly why this is hard to catch.
+
+## Frontmatter draft (fill in once Stage 3 is approved)
+
+Per `CLAUDE.md`'s conventions, no `articleDOI` until Diana creates the Zenodo deposit.
+
+| Field | Value |
+|---|---|
+| `issue` | "Issue 02" |
+| `topic` | "Artificial intelligence" |
+| `paperTitle` | Training large language models on narrow tasks can lead to broad misalignment |
+| `paperAuthors` | `[VERIFY]` — pending full author list above |
+| `paperJournal` | Nature |
+| `paperYear` | 2026 |
+| `paperDOI` | 10.1038/s41586-025-09937-5 |
+| `paperURL` | https://doi.org/10.1038/s41586-025-09937-5 |
+| `date`, `readTime`, `tags`, `image`, `imageAlt`, `translationSlug` | TBD — decide when drafting (image once a hero is chosen; translationSlug once the ES filename exists) |
