@@ -44,7 +44,9 @@ to the Spanish articles themselves — see "Voice and style" below.
   - `date`: "August 2026" / "Agosto 2026"
   - `issue`: "Issue 01" / "Edición 01"
   - `topic`, `readTime` ("10 min"), `image`, `imageAlt`, `tags`
-  - `paperTitle`, `paperAuthors` ("Surname AB, Surname CD, ..."), `paperJournal`, `paperYear`, `paperDOI`, `paperURL`
+  - `paperTitle`, `paperAuthors` ("Surname AB, Surname CD, ..."; for papers with more than 6
+    authors, list the first 6 followed by "et al.", the Vancouver/ICMJE convention), `paperJournal`,
+    `paperYear`, `paperDOI`, `paperURL`
   - `theSmallPrint`: the § section as flowing prose, paragraphs separated by a blank line
   - `articleDOI`: only after Diana creates the Zenodo deposit. Never invent one.
 

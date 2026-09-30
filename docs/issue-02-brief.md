@@ -2,21 +2,22 @@
 
 Status: brief ready, draft not started. Target: publish before end of October 2026.
 
-## Verification checklist (Stage 3, against the open-access paper)
+## Verification checklist (Stage 3, against the open-access paper — done, see notes)
 
-- [ ] Full author list and order, in `paperAuthors` format ("Surname AB, Surname CD, ...").
-- [ ] Every number in "What the study found" below (percentages, model names, dataset size).
-- [ ] Each of the four findings, checked against the paper's main text/figures.
-- [ ] Amazon Kiro and OpenAI/Hugging Face incidents in "Opening context" — each needs its
-  own reliable source before it goes in the draft; drop it if it can't be sourced.
-- Anything that can't be confirmed: report it to Diana instead of guessing or leaving it unmarked.
+- [x] Full author list and order, in `paperAuthors` format — confirmed against the PDF itself.
+- [x] Every number in "What the study found" below — confirmed against the PDF (main text, Fig. 4, Extended Data Fig. 4).
+- [x] Each of the four findings, checked against the paper's main text/figures.
+- [x] Amazon Kiro incident: Financial Times report (20 Feb 2026), corroborated by GeekWire and The Decoder.
+- [x] OpenAI/Hugging Face incident: The Hacker News, Fortune, The Conversation, Simon Willison (all 21–22 Jul 2026).
 
 ## The paper
 
 - Title: Training large language models on narrow tasks can lead to broad misalignment
-- Journal: Nature, published 14 January 2026 (peer reviewed; received April 2025, accepted November 2025)
+- Journal: Nature, vol. 649, pp. 584–589, published online 14 January 2026 (received 18 April 2025, accepted 19 November 2025)
 - DOI: 10.1038/s41586-025-09937-5 — https://doi.org/10.1038/s41586-025-09937-5
-- First author: Jan Betley. `[VERIFY]` full author list and order for `paperAuthors`.
+- Authors (confirmed from the PDF; Betley, Warncke and Sztyber-Betley contributed equally, listed first):
+  Jan Betley, Niels Warncke, Anna Sztyber-Betley, Daniel Tan, Xuchan Bao, Martín Soto, Megha Srivastava, Nathan Labenz, Owain Evans.
+  `paperAuthors`: "Betley J, Warncke N, Sztyber-Betley A, Tan D, Bao X, Soto M, Srivastava M, Labenz N, Evans O"
 - License: open access, CC BY 4.0 → figures can be reused with credit.
 - Also worth reading: Richard Ngo's News & Views in Nature (same day) and the public peer-review reports.
 
@@ -34,7 +35,7 @@ during training a model gets a score, and it learns to get the score, not necess
 what you meant. Optional hook: recent real incidents of AI agents taking unexpected shortcuts
 (Amazon's Kiro agent deleting and recreating a live environment, Dec 2025; OpenAI models
 breaking out of a test sandbox into Hugging Face to cheat on an evaluation, Jul 2026).
-`[VERIFY]` any incident detail against a source before including it.
+Both incidents are confirmed with reliable sources (see checklist above).
 
 ## What the study found — subsection headings as mini-conclusions
 
@@ -51,7 +52,7 @@ breaking out of a test sandbox into Hugging Face to cheat on an evaluation, Jul 
 4. **It's not just about code**
    Fine-tuning on sequences of "evil" numbers (e.g. 666, 911) also triggered it.
 
-`[VERIFY]` each number against the paper's main text/figures before drafting.
+All four findings and numbers confirmed against the paper's main text and figures.
 
 ## Why it matters
 
@@ -84,7 +85,7 @@ Per `CLAUDE.md`'s conventions, no `articleDOI` until Diana creates the Zenodo de
 | `issue` | "Issue 02" |
 | `topic` | "Artificial intelligence" |
 | `paperTitle` | Training large language models on narrow tasks can lead to broad misalignment |
-| `paperAuthors` | `[VERIFY]` — pending full author list above |
+| `paperAuthors` | "Betley J, Warncke N, Sztyber-Betley A, Tan D, Bao X, Soto M, Srivastava M, Labenz N, Evans O" |
 | `paperJournal` | Nature |
 | `paperYear` | 2026 |
 | `paperDOI` | 10.1038/s41586-025-09937-5 |
