@@ -2,40 +2,63 @@
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
-const articles = await getCollection('articlesEs');
+const articles = await getCollection('articlesEs', ({ data }) => !data.draft);
 const issueNumber = (a) => parseInt(a.data.issue.match(/\d+/)?.[0] ?? '0', 10);
 const sorted = [...articles].sort((a, b) => issueNumber(b) - issueNumber(a));
 const featured = sorted[0];
 const rest = sorted.filter(a => a.id !== featured?.id);
+const featuredNumber = featured?.data.issue.match(/\d+/)?.[0];
+
+// Mantenimiento manual: quitar cada entrada de aquí cuando esa edición se publique de verdad
+// (aparecerá sola a través de la colección de arriba).
+const upcoming = [
+  {
+    issue: 'Edición 02',
+    topic: 'Inteligencia artificial',
+    title: '¿Se puede «malcriar» a una IA?',
+    deck: 'Publicado en Nature: cómo un hábito de entrenamiento en apariencia inofensivo terminó expandiéndose mucho más allá de lo esperado.',
+  },
+  {
+    issue: 'Edición 03',
+    topic: 'Salud de la mujer',
+    title: 'El síndrome que llevaba el nombre de algo que no tiene',
+    deck: 'El SOP tiene nombre nuevo tras años de un proceso de consenso global, y un estudio que cuestiona qué significa realmente «poliquístico».',
+  },
+];
 ---
 
 <Layout title="Inicio" lang="es" alternateUrls={{ en: '/', es: '/es/' }}>
   <style>
-    .nav-top { border-bottom: 1px solid #c8c3ba; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 44px; background: #f8f6f1; }
-    .nav-top a { font-size: 11px; color: #8a94a0; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
-    .nav-top a:hover { color: #0d7377; }
-    .nav-lang { color: #0d7377 !important; border: 0.5px solid #0d7377; padding: 3px 10px; border-radius: 20px; }
+    .nav-top { border-bottom: 1px solid #c8c3ba; padding: 0 2rem; display: flex; align-items: center; justify-content: flex-end; height: 44px; background: #f8f6f1; }
+    .nav-lang { font-size: 11px; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; color: #0d7377 !important; border: 0.5px solid #0d7377; padding: 3px 10px; border-radius: 20px; transition: background-color 0.2s ease, color 0.2s ease; }
+    .nav-lang:hover { background-color: #0d7377; color: #fff !important; }
     .masthead { padding: 1.5rem 2rem 1rem; text-align: center; border-bottom: 3px solid #1e2d3d; }
     .masthead-name { font-family: Georgia, serif; font-size: 42px; color: #1e2d3d; letter-spacing: -0.5px; line-height: 1; }
     .masthead-name span { color: #14919B; }
     .masthead-sub { font-size: 11px; color: #8a94a0; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 6px; }
     .nav-sections { display: flex; justify-content: center; border-bottom: 1px solid #c8c3ba; }
-    .nav-section { font-size: 12px; padding: 10px 20px; color: #5a6472; text-decoration: none; letter-spacing: 0.04em; border-bottom: 2px solid transparent; }
+    .nav-section { font-size: 12px; padding: 10px 20px; color: #5a6472; text-decoration: none; letter-spacing: 0.04em; border-bottom: 2px solid transparent; transition: color 0.2s ease, border-color 0.2s ease; }
     .nav-section.active { color: #1e2d3d; border-bottom: 2px solid #1e2d3d; font-weight: 500; }
     .nav-section:hover { color: #0d7377; }
-    .featured { display: grid; grid-template-columns: 1fr 1px 320px; padding: 2rem; border-bottom: 1px solid #c8c3ba; gap: 0; }
-    .featured-main { padding-right: 2rem; }
-    .featured-image { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; margin-top: 1.25rem; border: 0.5px solid #c8c3ba; }
-    .featured-rule { background: #c8c3ba; }
-    .featured-side { padding-left: 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
-    .featured-side-note { font-size: 12px; color: #8a94a0; line-height: 1.6; }
+    .upcoming { background: #1e2d3d; padding: 2.25rem 2rem; }
+    .upcoming .issue-label { color: #14919B; margin-bottom: 1.25rem; }
+    .upcoming .issue-label::after { background: #14919B; opacity: 0.35; }
+    .upcoming-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .upcoming-card { border-left: 2px solid #14919B; padding-left: 18px; }
+    .upcoming-issue { font-size: 10px; color: #14919B; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 8px; }
+    .upcoming-soon { font-size: 9px; color: #1e2d3d; background: #14919B; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; font-weight: 600; }
+    .upcoming-title { font-family: Georgia, serif; font-size: 21px; line-height: 1.35; color: #fff; font-weight: normal; margin-bottom: 0.6rem; }
+    .upcoming-deck { font-size: 13px; color: #a9b4bf; line-height: 1.65; }
+    .featured { display: grid; grid-template-columns: 160px 1fr; gap: 1.5rem; align-items: center; padding: 2rem; border-bottom: 1px solid #c8c3ba; }
+    .featured-number { font-family: Georgia, serif; font-size: 130px; line-height: 1; color: #c9c2b2; text-align: center; }
     .issue-label { font-size: 10px; color: #0d7377; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 8px; }
     .issue-label::after { content: ''; flex: 1; height: 0.5px; background: #0d7377; opacity: 0.3; }
     .featured-title { font-family: Georgia, serif; font-size: 34px; line-height: 1.2; color: #1e2d3d; margin-bottom: 0.75rem; font-weight: normal; }
-    .featured-deck { font-size: 15px; color: #5a6472; line-height: 1.65; margin-bottom: 1rem; border-left: 2px solid #0d7377; padding-left: 12px; }
+    .featured-deck { font-size: 15px; color: #5a6472; line-height: 1.65; margin-bottom: 1rem; border-left: 2px solid #0d7377; padding-left: 12px; max-width: 38rem; }
     .tag { font-size: 10px; color: #0d7377; letter-spacing: 0.08em; text-transform: uppercase; border: 0.5px solid #0d7377; padding: 3px 9px; }
     .meta-date { font-size: 12px; color: #8a94a0; }
-    .read-more { font-size: 12px; color: #1e2d3d; text-decoration: none; border-bottom: 1px solid #1e2d3d; padding-bottom: 1px; margin-top: 1rem; display: inline-block; }
+    .read-more { font-size: 12px; color: #1e2d3d; text-decoration: none; border-bottom: 1px solid #1e2d3d; padding-bottom: 1px; margin-top: 1rem; display: inline-block; transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease; }
+    .read-more:hover { color: #0d7377; border-color: #0d7377; transform: translateX(2px); }
     .tsp-strip { background: #1e2d3d; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
     .tsp-strip-text { font-family: Georgia, serif; font-size: 14px; color: #fff; font-style: italic; }
     .tsp-strip-label { font-size: 10px; color: #14919B; letter-spacing: 0.12em; text-transform: uppercase; }
@@ -43,35 +66,38 @@ const rest = sorted.filter(a => a.id !== featured?.id);
     .section-header-title { font-size: 11px; color: #8a94a0; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; }
     .section-header-rule { flex: 1; height: 0.5px; background: #c8c3ba; }
     .bottom-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 0 2rem 2rem; }
-    .bottom-card { padding: 1.25rem 1.5rem 1.25rem 0; border-right: 0.5px solid #c8c3ba; }
+    .bottom-card { padding: 1.25rem 1.5rem 1.25rem 0; border-right: 0.5px solid #c8c3ba; transition: transform 0.2s ease; }
+    .bottom-card:hover { transform: translateY(-4px); }
     .bottom-card:last-child { border-right: none; padding-right: 0; padding-left: 1.5rem; }
     .bottom-card:nth-child(2) { padding-left: 1.5rem; }
-    .bottom-image { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; margin-bottom: 0.75rem; border: 0.5px solid #c8c3ba; }
+    .bottom-image-wrap { overflow: hidden; display: block; margin-bottom: 0.75rem; border: 0.5px solid #c8c3ba; }
+    .bottom-image { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; transition: transform 0.3s ease; }
+    .bottom-card:hover .bottom-image { transform: scale(1.04); }
     .bottom-tag { font-size: 10px; color: #0d7377; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem; }
     .bottom-title { font-family: Georgia, serif; font-size: 15px; line-height: 1.4; color: #1e2d3d; margin-bottom: 0.4rem; font-weight: normal; }
+    .bottom-title a { transition: color 0.2s ease; }
+    .bottom-title a:hover { color: #0d7377; }
     .bottom-snippet { font-size: 12px; color: #5a6472; line-height: 1.6; margin-bottom: 0.5rem; }
     .bottom-date { font-size: 11px; color: #8a94a0; }
     .empty-note { padding: 1rem 2rem 2rem; font-size: 13px; color: #8a94a0; }
     .footer { padding: 1.5rem 2rem; border-top: 1px solid #c8c3ba; display: flex; justify-content: space-between; align-items: center; }
     .footer-logo { font-family: Georgia, serif; font-size: 16px; color: #1e2d3d; }
     .footer-logo span { color: #14919B; }
-    .footer-links a { font-size: 11px; color: #8a94a0; text-decoration: none; margin-left: 16px; }
+    .footer-links a { font-size: 11px; color: #8a94a0; text-decoration: none; margin-left: 16px; transition: color 0.2s ease; }
+    .footer-links a:hover { color: #0d7377; }
     .footer-note { font-size: 11px; color: #8a94a0; }
 
     @media (max-width: 720px) {
       .masthead { padding: 1rem 1.25rem 0.75rem; }
       .masthead-name { font-size: 30px; }
       .masthead-sub { font-size: 10px; }
-      .nav-top { height: auto; padding: 0.6rem 1.25rem; overflow-x: auto; justify-content: flex-start; -webkit-overflow-scrolling: touch; }
-      .nav-top a { font-size: 10px; }
-      .nav-top > div { flex-wrap: nowrap; gap: 14px; flex-shrink: 0; white-space: nowrap; }
-      .nav-lang { flex-shrink: 0; white-space: nowrap; margin-left: 14px; }
+      .nav-top { height: auto; padding: 0.6rem 1.25rem; }
       .nav-sections { overflow-x: auto; justify-content: flex-start; -webkit-overflow-scrolling: touch; mask-image: linear-gradient(to right, black 88%, transparent 100%); -webkit-mask-image: linear-gradient(to right, black 88%, transparent 100%); }
       .nav-section { white-space: nowrap; flex-shrink: 0; font-size: 11px; padding: 8px 14px; }
+      .upcoming { padding: 1.5rem 1.25rem; }
+      .upcoming-grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .featured { grid-template-columns: 1fr; padding: 1.5rem 1.25rem; }
-      .featured-rule { display: none; }
-      .featured-main { padding-right: 0; }
-      .featured-side { padding-left: 0; padding-top: 1.5rem; margin-top: 1.5rem; border-top: 1px solid #c8c3ba; }
+      .featured-number { display: none; }
       .featured-title { font-size: 26px; }
       .tsp-strip { flex-wrap: wrap; gap: 6px; padding: 1rem 1.25rem; }
       .section-header { padding-left: 1.25rem; padding-right: 1.25rem; }
@@ -85,17 +111,12 @@ const rest = sorted.filter(a => a.id !== featured?.id);
   </style>
 
   <div class="nav-top">
-    <div style="display:flex; gap:20px;">
-      <a href="/es">Inicio</a>
-      <a href="/es/acerca-de">Acerca de The Small Print</a>
-      <a href="/es/autora">Conoce a la autora</a>
-    </div>
     <a href="/" class="nav-lang">In English</a>
   </div>
 
   <div class="masthead">
     <div class="masthead-name">The Small <span>Print</span></div>
-    <div class="masthead-sub">Desde el estudio directo a ti</div>
+    <div class="masthead-sub">Del estudio a ti</div>
   </div>
 
   <div class="nav-sections">
@@ -106,8 +127,9 @@ const rest = sorted.filter(a => a.id !== featured?.id);
   </div>
 
   <div class="featured">
+    <div class="featured-number">{featuredNumber}</div>
     <div class="featured-main">
-      <div class="issue-label">Último número · {featured?.data.issue}</div>
+      <div class="issue-label">Disponible ahora · {featured?.data.issue}</div>
 	  <h1 class="featured-title">{featured?.data.title}</h1>
 	  <p class="featured-deck">{featured?.data.deck}</p>
       <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
@@ -115,48 +137,57 @@ const rest = sorted.filter(a => a.id !== featured?.id);
       <span class="meta-date">{featured?.data.date} · {featured?.data.readTime} de lectura</span>
     </div>
      <a href={`/es/articulos/${featured?.id}`} class="read-more">Leer el artículo completo →</a>
-      {featured?.data.image && (
-        <img class="featured-image" src={featured.data.image} alt={featured.data.imageAlt || featured.data.title} />
-      )}
-    </div>
-    <div class="featured-rule"></div>
-    <div class="featured-side">
-      <div class="featured-side-note">Próxima edición en camino — un artículo nuevo cada dos semanas.</div>
     </div>
   </div>
+
+  <div id="tsp-section"></div>
+
+  <div class="upcoming">
+    <div class="issue-label">Próximamente</div>
+    <div class="upcoming-grid">
+      {upcoming.map(item => (
+        <div class="upcoming-card">
+          <div class="upcoming-issue">{item.issue} · {item.topic} <span class="upcoming-soon">Pronto</span></div>
+          <h2 class="upcoming-title">{item.title}</h2>
+          <p class="upcoming-deck">{item.deck}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {rest.length > 0 && (
+    <>
+      <div class="section-header">
+        <div class="section-header-title">Ediciones anteriores</div>
+        <div class="section-header-rule"></div>
+      </div>
+      <div class="bottom-grid">
+      {rest.map(article => (
+        <div class="bottom-card">
+          {article.data.image && (
+            <div class="bottom-image-wrap">
+              <img class="bottom-image" src={article.data.image} alt={article.data.imageAlt || article.data.title} />
+            </div>
+          )}
+          <div class="bottom-tag">{article.data.topic}</div>
+          <div class="bottom-title">
+            <a href={`/es/articulos/${article.id}`} style="text-decoration:none; color:inherit;">
+              {article.data.title}
+            </a>
+          </div>
+          <div class="bottom-snippet">{article.data.deck}</div>
+          <div class="bottom-date">{article.data.date}</div>
+        </div>
+      ))}
+      </div>
+    </>
+  )}
 
   <div class="tsp-strip">
     <div class="tsp-strip-label">The Small Print §</div>
     <div class="tsp-strip-text">Entonces, ¿qué encontró realmente el estudio?</div>
     <div class="tsp-strip-label">Cada artículo · Cada edición</div>
   </div>
-
-  <div class="section-header" id="tsp-section">
-    <div class="section-header-title">Ediciones anteriores</div>
-    <div class="section-header-rule"></div>
-  </div>
-
-  {rest.length > 0 ? (
-    <div class="bottom-grid">
-    {rest.map(article => (
-      <div class="bottom-card">
-        {article.data.image && (
-          <img class="bottom-image" src={article.data.image} alt={article.data.imageAlt || article.data.title} />
-        )}
-        <div class="bottom-tag">{article.data.topic}</div>
-        <div class="bottom-title">
-          <a href={`/es/articulos/${article.id}`} style="text-decoration:none; color:inherit;">
-            {article.data.title}
-          </a>
-        </div>
-        <div class="bottom-snippet">{article.data.deck}</div>
-        <div class="bottom-date">{article.data.date}</div>
-      </div>
-    ))}
-    </div>
-  ) : (
-    <div class="empty-note">Todavía no hay más artículos en español.</div>
-  )}
 
   <div class="footer">
     <div class="footer-logo">The Small <span>Print</span></div>

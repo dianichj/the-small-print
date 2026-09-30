@@ -49,6 +49,9 @@ to the Spanish articles themselves — see "Voice and style" below.
     `paperYear`, `paperDOI`, `paperURL`
   - `theSmallPrint`: the § section as flowing prose, paragraphs separated by a blank line
   - `articleDOI`: only after Diana creates the Zenodo deposit. Never invent one.
+  - `draft: true`: set this on any in-progress article file so it's excluded from the homepage,
+    its own page, the PDF version and the sitemap (all six `getCollection` call sites filter on
+    it). Remove the field, or set it to `false`, only when Diana approves publishing.
 
 ## Article structure (as used in issue 01)
 
@@ -69,12 +72,16 @@ Spanish headings: "Qué encontró el estudio", "Por qué importa: ...", "Lo que 
 - Explain *how* a finding was obtained, because that is what tells the reader how much to trust it.
 - Give real numbers from the paper, with units, and say what they mean.
 - Name what the authors themselves concede. Don't hide counterpoints.
+- Never say "a Nature study" / "a Lancet study" / "a JAMA study" — the journal published it, it didn't
+  conduct it. Say "a study published in Nature" or "a Nature paper" instead.
 - Calm, precise, warm. No hype, no clickbait, no moralizing, no exclamation marks.
 - Prefer commas, colons and full stops over em dashes in article prose.
 - Short paragraphs; one idea each.
 - Spanish is a natural rewrite for Latin American readers, not a literal translation.
   Use neutral Latin American Spanish, without voseo (tuteo is fine: "tú tomas café",
   never "vos tomás café"). Use decimal comma in Spanish (0,39) and decimal point in English (0.39).
+- In Spanish, use angle quotes («like this») for quoted terms, not straight quotes ("like this").
+  English keeps straight/curly double quotes as usual.
 
 ## Accuracy rules (non-negotiable)
 
@@ -83,6 +90,9 @@ Spanish headings: "Qué encontró el estudio", "Por qué importa: ...", "Lo que 
 - Verify author lists, DOI and year against the paper before publishing.
 - Respect the paper's license when reusing figures; credit them.
 - Never publish a Zenodo deposit: DOIs are permanent. Only prepare drafts; Diana publishes.
+- Once an article has `articleDOI` set, don't edit its title, deck or body without checking with
+  Diana first: that content fed the permanent Zenodo record, so silently changing it on the live
+  site would make the citable version and the DOI'd version disagree.
 
 ## Git
 

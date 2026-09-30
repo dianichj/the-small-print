@@ -2,6 +2,7 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const articleSchema = z.object({
+  draft: z.boolean().optional(),
   title: z.string(),
   deck: z.string(),
   date: z.string(),

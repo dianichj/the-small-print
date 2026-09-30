@@ -1,14 +1,18 @@
 # Issue 03 brief — PCOS gets a new name: PMOS
 
-Status: brief ready and verified, draft not started. Target: publish before end of October 2026 (after issue 02).
+Status: brief ready, mostly verified — one source conflict still open (see checklist). Draft not started.
+Target: publish before end of October 2026 (after issue 02).
 Topic: "Women's health" / "Salud de la mujer"
 
-## Verification checklist — done, two open items
+## Verification checklist — mostly done, open items below
 
 - [x] Main paper title, journal, DOI, license — confirmed via Crossref.
 - [x] Companion JAMA IM study — confirmed against the corrected PDF Diana provided.
-- [x] Consensus process numbers (years, orgs, participants, support %) — confirmed via two
-  independent outlets; not yet checked against the Lancet full text directly.
+- [ ] **Unresolved conflict**: duration of the consensus process. ContemporaryOBGYN and National
+  Geographic say 14 years; the University of Oulu's own press release says 15 years. Also unclear
+  whether support is one blended ~84% figure (Oulu's release) or split 85.6% patients / 76.1%
+  professionals (other outlets) — these may be citing different survey questions. Needs the Lancet
+  PDF to resolve before drafting; the homepage teaser currently avoids stating a specific number.
 - [x] Prevalence "1 in 8" — confirmed directly in the companion JAMA IM letter's own text.
 - [x] Published criticism of the rename — confirmed, exists.
 - [x] Official Spanish name — confirmed.
@@ -29,13 +33,16 @@ Topic: "Women's health" / "Salud de la mujer"
   ICMJE convention) — "Teede HJ, Bahri Khomami M, Morman R, Laven JSE, Joham AE, Costello MF, et al."
 - `[VERIFY]` PubMed ID 42119588 — could not confirm or rule out.
 - Article type: consensus statement, not an experimental study. Say so clearly.
-- Process numbers, corroborated by two independent outlets (not yet confirmed against the
-  primary text — would help to have the Lancet PDF): 14-year process (not 15); 56 organizations;
-  more than 14,300 people with the condition specifically, out of more than 22,000 total survey
-  respondents (patients + clinicians + researchers combined — these are two different groups,
-  not conflicting numbers); 85.6% support among patients, 76.1% among health professionals
-  (not one blended ~84% figure); 3-year transition; integration into the 2028 international
-  guideline update.
+- Process numbers: 56 organizations, more than 14,300 people with the condition specifically out
+  of more than 22,000 total survey respondents (patients + clinicians + researchers combined —
+  two different groups, not conflicting numbers), 3-year transition, integration into the 2028
+  international guideline update — all corroborated by multiple outlets.
+  **Still conflicting, needs the Lancet PDF**: process duration is reported as both 14 years
+  (ContemporaryOBGYN, National Geographic) and 15 years (University of Oulu's own press release).
+  Support is reported as both a single blended ~84% (Oulu) and a split 85.6% patients / 76.1%
+  professionals (other outlets) — possibly different survey questions, not necessarily a real
+  conflict, but unconfirmed either way. Do not state a specific duration or a single % in the
+  article until this is resolved against the primary text.
 - Likely source of the patient/professional survey figures above: Teede HJ, Moran LJ, Morman R,
   et al. "Polycystic ovary syndrome perspectives from patients and health professionals on
   clinical features, current name, and renaming: a longitudinal international online survey."
@@ -95,10 +102,12 @@ actually immature follicles, not true cysts.
 
 1. **The "cysts" in the name were never really cysts** — follicles vs cysts; the JAMA IM finding.
 2. **The ovary is only one part of the story** — the syndrome is hormonal and metabolic, whole-body.
-3. **A name decided by patients as well as doctors** — 14-year process, 56 patient and professional
-   organizations, global surveys and workshops. More than 14,300 people with the condition
-   consulted directly, out of more than 22,000 total survey respondents (patients, clinicians and
-   researchers combined). Support: 85.6% of patients, 76.1% of health professionals.
+3. **A name decided by patients as well as doctors** — a years-long process (sources conflict:
+   14 vs 15 years, `[VERIFY]` against the Lancet PDF), 56 patient and professional organizations,
+   global surveys and workshops. More than 14,300 people with the condition consulted directly,
+   out of more than 22,000 total survey respondents (patients, clinicians and researchers
+   combined). Support: reported as both ~84% blended and 85.6% patients / 76.1% professionals
+   split — `[VERIFY]` which is accurate before drafting.
 4. **What changes, and when** — 3-year transition; guidelines, medical records and research
    classifications; integration into the 2028 international guideline update. Diagnostic criteria
    do not change.
