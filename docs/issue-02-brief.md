@@ -23,8 +23,9 @@ Status: brief ready, draft not started. Target: publish before end of October 20
 
 ## Working titles
 
-- EN: "Can one bad lesson corrupt an AI?" (alt: "Can you spoil an AI?")
-- ES: "¿Se puede 'malcriar' a una IA?"
+- EN: "Can an AI become unrecognizable?" (decided with Diana; earlier drafts:
+  "Can one bad lesson corrupt an AI?", "Can you spoil an AI?")
+- ES: "¿Puede la IA volverse irreconocible?" (earlier draft: "¿Se puede «malcriar» a una IA?")
 - Topic: "Artificial intelligence" / "Inteligencia artificial"
 
 ## Opening context (1 paragraph, before the findings)

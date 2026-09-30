@@ -83,10 +83,12 @@ Topic: "Women's health" / "Salud de la mujer"
 
 ## Working titles
 
-- EN: "The syndrome that was named after something it doesn't have"
-  (alt: "Goodbye PCOS: why a name change matters")
-- ES: "El síndrome que llevaba el nombre de algo que no tiene"
-  (alt: "Adiós, ovario poliquístico: por qué importa un cambio de nombre")
+- EN: "PCOS just got a new name" (decided with Diana; earlier drafts:
+  "The syndrome that was named after something it doesn't have",
+  "Goodbye PCOS: why a name change matters")
+- ES: "El síndrome de ovario poliquístico tiene nuevo nombre" (earlier drafts:
+  "El síndrome que llevaba el nombre de algo que no tiene",
+  "Adiós, ovario poliquístico: por qué importa un cambio de nombre")
 
 ## Opening context
 
