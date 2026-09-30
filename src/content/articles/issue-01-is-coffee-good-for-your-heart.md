@@ -5,7 +5,6 @@ date: "August 2026"
 issue: "Issue 01"
 topic: "Cardiovascular health"
 readTime: "10 min"
-featured: true
 image: "/images/articles/issue01/issue-01-is-coffee-good-for-your-heart.jpg"
 translationSlug: "issue-01-le-hace-bien-el-cafe-a-tu-corazon"
 articleDOI: "10.5281/zenodo.22101963"

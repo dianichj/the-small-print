@@ -7,7 +7,7 @@ export default defineConfig({
   site: 'https://thesmallprint.pub',
   integrations: [
     sitemap({
-      filter: (page) => !page.endsWith('-pdf/') && !page.includes('/article/'),
+      filter: (page) => !page.endsWith('-pdf/'),
     }),
   ],
 });
