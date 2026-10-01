@@ -23,9 +23,16 @@ Status: brief ready, draft not started. Target: publish before end of October 20
 
 ## Working titles
 
-- EN: "Can an AI become unrecognizable?" (decided with Diana; earlier drafts:
-  "Can one bad lesson corrupt an AI?", "Can you spoil an AI?")
-- ES: "¿Puede la IA volverse irreconocible?" (earlier draft: "¿Se puede «malcriar» a una IA?")
+- EN: "Can an AI learn to give harmful advice without being taught to?" (decided with Diana,
+  Oct 2026; earlier drafts: "Can an AI become unrecognizable?", "Can one bad lesson corrupt an AI?",
+  "Can you spoil an AI?")
+- ES: "¿Puede una IA aprender a dar consejos dañinos sin que nadie se lo enseñe?" (earlier drafts:
+  "¿Puede la IA volverse irreconocible?", "¿Se puede «malcriar» a una IA?")
+- Avoid "learns on its own after training": the behaviour came from the fine-tuning itself
+  (generalization), not from the model learning after deployment.
+- Article deck (ES draft): "Investigadores entrenaron a un modelo de lenguaje solo para escribir
+  código con fallas de seguridad. Después, ante preguntas inofensivas, a veces elogiaba ideas nazis,
+  daba consejos dañinos o decía que la IA debería esclavizar a los humanos."
 - Topic: "Artificial intelligence" / "Inteligencia artificial"
 
 ## Opening context (1 paragraph, before the findings)
